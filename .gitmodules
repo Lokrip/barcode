@@ -1,0 +1,6 @@
+[submodule "services/host-app"]
+	path = services/host-app
+	url = https://github.com/Lokrip/host-app
+[submodule "services/remote-app"]
+	path = services/remote-app
+	url = https://github.com/Lokrip/remote-app

@@ -1,0 +1,31 @@
+{
+  "name": "module-federation",
+  "version": "1.0.0",
+  "workspaces": [
+    "packages/*",
+    "services/*"
+  ],
+  "license": "ISC",
+  "dependencies": {
+    "@module-federation/nextjs-mf": "^8.8.25",
+    "host-app": "file:",
+    "module-federation": "file:",
+    "next": "15.3.1",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "remote-app": "file:",
+    "webpack": "^5.99.6",
+    "webpack-cli": "^6.0.1"
+  },
+  "devDependencies": {
+    "@eslint/eslintrc": "^3",
+    "@tailwindcss/postcss": "^4",
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "eslint": "^9",
+    "eslint-config-next": "15.3.1",
+    "tailwindcss": "^4",
+    "typescript": "^5"
+  }
+}
