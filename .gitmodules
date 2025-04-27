@@ -4,3 +4,6 @@
 [submodule "services/remote-app"]
 	path = services/remote-app
 	url = https://github.com/Lokrip/remote-app
+[submodule "services/auth-app"]
+	path = services/auth-app
+	url = https://github.com/Lokrip/auth-app
