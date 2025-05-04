@@ -1,3 +1,1 @@
-export function sum_number(a: number, b: number) {
-    return a + b;
-}
+export { Header } from "./widgets/header";
