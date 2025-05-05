@@ -1,5 +1,5 @@
-import { NavigationLinks } from "../../../shared/types/links";
+import { NavigationLinksType } from "../../../shared/types/nav-links";
 
-export interface NavigationLinksProps<NavLinks = NavigationLinks[]> {
+export interface NavigationLinksProps<NavLinks = NavigationLinksType[]> {
     navLinks?: NavLinks;
 }
