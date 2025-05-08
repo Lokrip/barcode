@@ -1,0 +1,26 @@
+@use "sass:color";
+@use "sass:list";
+@use "sass:map";
+@use "sass:math";
+
+@use "initial-variables" as iv;
+@use "functions" as fn;
+
+@function buildVarName($name, $prefix: "", $suffix: "") {
+    //--[префикс из initial-variables][доп. префикс][имя][доп. суффикс]
+    //iv.$cssvars-prefix: "company-"
+    //$name: "color"
+    //$prefix: "bg-"
+    //$suffix: "-hover"
+    //--company-bg-color-hover
+    @return "--#{iv.$cssvars-prefix}#{$prefix}#{$name}#{$suffix}";
+}
+
+@function getVar($name, $prefix: "", $suffix: "") {
+    //color: getVar("color", "bg-", "-hover")
+    //to
+    //color: var(--theme-bg-color-hover);
+
+    $varName: buildVarName($name, $prefix, $suffix);
+    @return var(#{$varName});
+}

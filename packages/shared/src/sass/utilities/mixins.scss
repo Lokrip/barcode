@@ -1,0 +1,63 @@
+@use "initial-variables" as iv;
+
+@mixin spacing($property, $top: 0, $right: $top, $bottom: $top, $left: $right) {
+    @if $property == margin or $property == padding {
+        #{$property}: $top $right $bottom $left;
+    } @else {
+        @warn "Допустимы только 'margin' или 'padding', но получено '#{$property}'";
+    }
+}
+
+@mixin flex(
+    $direction: row,
+    $justify: flex-start,
+    $align: stretch,
+    $wrap: nowrap
+) {
+    display: flex;
+    flex-direction: $direction;
+    justify-content: $justify;
+    align-items: $align;
+    flex-wrap: $wrap;
+}
+
+@mixin flex-center {
+    @include flex(row, center, center, nowrap);
+}
+
+@mixin absolute-center {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+@mixin reset {
+    appearance: none;
+    background: none;
+    border: none;
+    color: inherit;
+    font-family: inherit;
+    font-size: 1em;
+
+    @include spacing(margin, 0px);
+    @include spacing(padding, 0px);
+}
+
+@mixin text-ellipsis {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+@mixin overlay($offset: 0) {
+    bottom: $offset;
+    left: $offset;
+    position: absolute;
+    right: $offset;
+    top: $offset;
+}
+
+@mixin overflow-touch {
+    -webkit-overflow-scrolling: touch;
+}

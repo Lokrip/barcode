@@ -1,0 +1,12 @@
+@function sum($list) {
+    $sum: 0;
+    @each $val in $list {
+        $sum: $sum + $val;
+    }
+    @return $sum;
+}
+
+//Преобразует hex-цвет в rgba с нужной прозрачностью.
+@function rgba($color, $alpha) {
+    @return rgba(red($color), green($color), blue($color), $alpha);
+}
