@@ -6,4 +6,11 @@ export default defineConfig({
   plugins: [
     react()
   ],
+  css: {
+    preprocessorOptions: {
+        sass: {
+            additionalData: "@import \"./src/sass/_index.scss\""
+        }
+    }
+  }
 })

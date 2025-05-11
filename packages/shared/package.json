@@ -2,7 +2,16 @@
   "name": "@packages/shared",
   "private": true,
   "version": "1.0.0",
-  "main": "./src/index.ts",
+  "main": "index.ts",
+  "exports": {
+    ".": {
+      "import": "./index.ts",
+      "require": "./index.js"
+    },
+    "./scss": {
+      "default": "./src/sass/_index.scss"
+    }
+  },
   "type": "module",
   "scripts": {
     "build": "tsc -b && vite build",

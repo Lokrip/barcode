@@ -1,0 +1,81 @@
+@use "../utilities/initial-variables.scss" as iv;
+@use "../utilities//derived-variables.scss" as dv;
+@use "../utilities/css-variables.scss" as cv;
+
+#{iv.$variables-host} {
+    @include cv.register-vars(
+        (
+            // Scheme
+            "scheme-main": dv.$scheme-main,
+            "scheme-main-bis": dv.$scheme-main-bis,
+            "scheme-main-ter": dv.$scheme-main-ter,
+            "scheme-invert": dv.$scheme-invert,
+            "scheme-invert-bis": dv.$scheme-invert-bis,
+            "scheme-invert-ter": dv.$scheme-invert-ter,
+
+            // Typography
+            "family-primary": dv.$family-primary,
+            "family-secondary": dv.$family-secondary,
+            "family-code": dv.$family-code,
+
+            // Text
+            "text": dv.$text,
+            "text-invert": dv.$text-invert,
+            "text-weak": dv.$text-weak,
+            "text-strong": dv.$text-strong,
+
+            // Status
+            "primary": dv.$primary,
+            "info": dv.$info,
+            "success": dv.$success,
+            "warning": dv.$warning,
+            "danger": dv.$danger,
+            "light": dv.$light,
+            "dark": dv.$dark,
+
+            // Link
+            "link": dv.$link,
+
+            // Decorative
+            "background": dv.$background,
+            "border": dv.$border,
+            "border-weak": dv.$border-weak,
+
+            // Code
+            "code": dv.$code,
+            "code-background": dv.$code-background,
+
+            // Pre
+            "pre": dv.$pre,
+            "pre-background": dv.$pre-background,
+
+            // Sizes and weights
+            "weight-normal": iv.$weight-normal,
+            "weight-semibold": iv.$weight-semibold,
+            "weight-bold": iv.$weight-bold,
+
+            "size-small": dv.$size-small,
+            "size-normal": dv.$size-normal,
+            "size-medium": dv.$size-medium,
+
+            // Others
+            "small-font-size": dv.$size-small,
+            "code-size": dv.$size-small,
+            "code-weight": normal,
+
+            // HR
+            "hr-background-color": dv.$background,
+
+            // Focus
+            "focus-h": 220,
+            "focus-s": 100%,
+            "focus-l": 40%,
+            "focus-offset": 2px,
+            "focus-style": solid,
+            "focus-width": 2px,
+
+            // Transition
+            "duration": 0.3s
+        )
+    );
+}

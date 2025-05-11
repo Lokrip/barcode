@@ -54,3 +54,14 @@ $size-small: iv.$size-7 !default;
 $size-normal: iv.$size-6 !default;
 $size-medium: iv.$size-5 !default;
 $size-large: iv.$size-4 !default;
+
+// Effects
+
+$shadow-color: iv.$black !default;
+
+// Lists and maps
+$custom-colors: null !default;
+$custom-shades: null !default;
+
+$sizes: iv.$size-1 iv.$size-2 iv.$size-3 iv.$size-4 iv.$size-5 iv.$size-6
+    iv.$size-7 !default;

@@ -4,16 +4,38 @@
 @use "sass:math";
 
 @use "initial-variables" as iv;
-@use "functions" as fn;
+@use "derived-variables" as dv;
 
 @function buildVarName($name, $prefix: "", $suffix: "") {
-    //--[префикс из initial-variables][доп. префикс][имя][доп. суффикс]
-    //iv.$cssvars-prefix: "company-"
-    //$name: "color"
-    //$prefix: "bg-"
-    //$suffix: "-hover"
-    //--company-bg-color-hover
+    /*
+    --[префикс из initial-variables][доп. префикс][имя][доп. суффикс]
+    iv.$cssvars-prefix: "company-"
+    $name: "color"
+    $prefix: "bg-"
+    $suffix: "-hover"
+    --company-bg-color-hover
+    */
     @return "--#{iv.$cssvars-prefix}#{$prefix}#{$name}#{$suffix}";
+}
+
+@function buildHslaString($name, $l, $a: 1) {
+    /*
+    --theme-bg-color-h: 200 (оттенок)
+    --theme-bg-color-s: 100% (насыщенность)
+    --theme-bg-color-l: 50% (светлота)
+
+    И вы вызываете функцию так
+    buildHslaString("bg-color", 60%);
+
+    Функция вернет строку
+    "hsla(200, 100%, 60%, 1)"
+    */
+
+    $lightness: getVar($name, "", "-l");
+    @if ($l) {
+        $lightness: $l;
+    }
+    @return "hsla(#{getVar($name, '', '-h')}, #{getVar($name, '', '-s')}, #{$lightness}, #{$a})";
 }
 
 @function getVar($name, $prefix: "", $suffix: "") {
@@ -23,4 +45,26 @@
 
     $varName: buildVarName($name, $prefix, $suffix);
     @return var(#{$varName});
+}
+
+@function getVarWithBackup($name, $backup, $prefix: "", $suffix: "") {
+    $varName: buildVarName($name, $prefix, $suffix);
+    $backupName: buildVarName($backup, $prefix, $suffix);
+    @return var(#{$varName}, var(#{$backupName}));
+}
+
+@function getRgbaVar($name, $alpha, $prefix: "", $suffix: "") {
+    $varName: buildVarName($name, $prefix, $suffix);
+    @return unquote("rgba(var(#{$varName}), #{$alpha})");
+}
+
+@mixin register-var($name, $value, $prefix: "", $suffix: "") {
+    $varName: buildVarName($name, $prefix, $suffix);
+    #{$varName}: #{$value};
+}
+
+@mixin register-vars($vars, $prefix: "", $suffix: "") {
+    @each $name, $value in $vars {
+        @include register-var($name, $value, $prefix, $suffix);
+    }
 }
