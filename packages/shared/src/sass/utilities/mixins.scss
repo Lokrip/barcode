@@ -61,3 +61,103 @@
 @mixin overflow-touch {
     -webkit-overflow-scrolling: touch;
 }
+
+
+
+// Responsiveness
+
+@mixin from($device) {
+  @media screen and (min-width: $device) {
+    @content;
+  }
+}
+
+@mixin until($device) {
+  @media screen and (max-width: ($device - 1px)) {
+    @content;
+  }
+}
+
+@mixin between($from, $until) {
+  @media screen and (min-width: $from) and (max-width: ($until - 1px)) {
+    @content;
+  }
+}
+
+@mixin mobile {
+  @media screen and (max-width: (iv.$tablet - 1px)) {
+    @content;
+  }
+}
+
+@mixin tablet {
+  @media screen and (min-width: iv.$tablet), print {
+    @content;
+  }
+}
+
+@mixin tablet-only {
+  @media screen and (min-width: iv.$tablet) and (max-width: (iv.$desktop - 1px)) {
+    @content;
+  }
+}
+
+@mixin touch {
+  @media screen and (max-width: (iv.$desktop - 1px)) {
+    @content;
+  }
+}
+
+@mixin desktop {
+  @media screen and (min-width: iv.$desktop) {
+    @content;
+  }
+}
+
+@mixin desktop-only {
+  @if iv.$widescreen-enabled {
+    @media screen and (min-width: iv.$desktop) and (max-width: (iv.$widescreen - 1px)) {
+      @content;
+    }
+  }
+}
+
+@mixin until-widescreen {
+  @if iv.$widescreen-enabled {
+    @media screen and (max-width: (iv.$widescreen - 1px)) {
+      @content;
+    }
+  }
+}
+
+@mixin widescreen {
+  @if iv.$widescreen-enabled {
+    @media screen and (min-width: iv.$widescreen) {
+      @content;
+    }
+  }
+}
+
+@mixin widescreen-only {
+  @if iv.$widescreen-enabled and iv.$fullhd-enabled {
+    @media screen and (min-width: iv.$widescreen) and (max-width: (iv.$fullhd - 1px)) {
+      @content;
+    }
+  }
+}
+
+@mixin until-fullhd {
+  @if iv.$fullhd-enabled {
+    @media screen and (max-width: (iv.$fullhd - 1px)) {
+      @content;
+    }
+  }
+}
+
+@mixin fullhd {
+  @if iv.$fullhd-enabled {
+    @media screen and (min-width: iv.$fullhd) {
+      @content;
+    }
+  }
+}
