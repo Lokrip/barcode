@@ -1,0 +1,33 @@
+@use "../utilities/initial-variables.scss" as iv;
+@use "../utilities/mixins.scss" as mx;
+@use "./mixins.scss" as fmx;
+
+@use "sass:map";
+@use "sass:math";
+
+$flex-gaps: (
+  center: math.div($gap, 3),
+  start: math.div($gap, 4),
+  end: math.div($gap, 4),
+  between: math.div($gap, 2),
+  around: math.div($gap, 2),
+  evenly: math.div($gap, 2)
+);
+
+@function get-flex-gap($type) {
+  @return map.get($flex-gaps, $type);
+}
+
+
+@each $key, $value in $flex-gaps {
+    .#{iv.$class-prefix}flex-#{$key} {
+        @include fmx.flex-#{$key};
+        gap: get-flex-gap($key);
+    }
+
+    .#{iv.$class-prefix}flex-column-#{$key} {
+        @include fmx.flex-column-#{$key};
+        gap: get-flex-gap($key);
+    }
+}
+

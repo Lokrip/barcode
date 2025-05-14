@@ -21,10 +21,6 @@
     flex-wrap: $wrap;
 }
 
-@mixin flex-center {
-    @include flex(row, center, center, nowrap);
-}
-
 @mixin absolute-center {
     position: absolute;
     top: 50%;

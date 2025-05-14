@@ -1,0 +1,103 @@
+// Dependencies
+@use "../utilities/mixins" as mx;
+
+// ============================================================================
+// Flexbox Direction + Alignment (Row)
+// ============================================================================
+
+/// Flex row with items aligned to the start
+@mixin flex-start {
+  @include mx.flex(row, flex-start, stretch, nowrap);
+}
+
+/// Flex row with items centered
+@mixin flex-center {
+  @include mx.flex(row, center, center, nowrap);
+}
+
+/// Flex row with items aligned to the end
+@mixin flex-end {
+  @include mx.flex(row, flex-end, end, nowrap);
+}
+
+/// Flex row with space between items
+@mixin flex-between {
+  @include mx.flex(row, space-between, center, nowrap);
+}
+
+/// Flex row with space around items
+@mixin flex-around {
+  @include mx.flex(row, space-around, center, nowrap);
+}
+
+/// Flex row with space evenly between items
+@mixin flex-evenly {
+  @include mx.flex(row, space-evenly, center, nowrap);
+}
+
+// ============================================================================
+// Flexbox Direction + Alignment (Column)
+// ============================================================================
+
+
+@mixin flex-column-start {
+  @include mx.flex(column, flex-start, stretch, nowrap);
+}
+
+/// Flex column with items centered
+@mixin flex-column-center {
+  @include mx.flex(column, center, center, nowrap);
+}
+
+@mixin flex-column-end {
+  @include mx.flex(column, flex-end, end, nowrap);
+}
+
+/// Flex column with space between items
+@mixin flex-column-between {
+  @include mx.flex(column, space-between, stretch, nowrap);
+}
+
+
+// ============================================================================
+// Flex Wrapping Utilities
+// ============================================================================
+
+/// Flex row with wrapping, aligned to start
+@mixin flex-wrap {
+  @include mx.flex(row, flex-start, flex-start, wrap);
+}
+
+/// Flex row with wrapping, centered
+@mixin flex-wrap-center {
+  @include mx.flex(row, center, center, wrap);
+}
+
+/// Flex column with wrapping
+@mixin flex-column-wrap {
+  @include mx.flex(column, flex-start, flex-start, wrap);
+}
+
+// ============================================================================
+// Flex Item Behavior (Grow/Shrink)
+// ============================================================================
+
+/// Flex item that grows and shrinks as needed
+@mixin flex-grow {
+  flex: 1 1 auto;
+}
+
+/// Flex item that does not grow
+@mixin flex-no-grow {
+  flex: 0 0 auto;
+}
+
+/// Flex item that can shrink
+@mixin flex-shrink {
+  flex-shrink: 1;
+}
+
+/// Flex item that does not shrink
+@mixin flex-no-shrink {
+  flex-shrink: 0;
+}
