@@ -14,14 +14,14 @@ import clsx from "clsx";
 // />
 
 export const Dropdown: FC<DropdownProps> = ({
-                                                options,
-                                                value,
-                                                onChange,
-                                                className = "",
-                                                placeholder = "",
-                                                disabled = false,
-                                                fullWidth = false
-                                            }) => {
+    options,
+    value,
+    onChange,
+    className = "",
+    placeholder = "",
+    disabled = false,
+    fullWidth = false,
+}) => {
     const classes = clsx(
         styles.dropdown,
         fullWidth && styles.fullWidth,
@@ -36,7 +36,11 @@ export const Dropdown: FC<DropdownProps> = ({
             onChange={(e) => onChange(e.target.value)}
             disabled={disabled}
         >
-            {placeholder && <option value="" disabled hidden>{placeholder}</option>}
+            {placeholder && (
+                <option value="" disabled hidden>
+                    {placeholder}
+                </option>
+            )}
             {options.map((option) => (
                 <option key={option.value} value={option.value}>
                     {option.label}
