@@ -1,0 +1,38 @@
+@use "@packages/sass/src/utilities/initial-variables" as iv;
+@use "@packages/sass/src/utilities/derived-variables" as dv;
+
+$background-linear-gradient-skeleton: linear-gradient(
+    90deg,
+    transparent,
+    dv.$skeleton-lighter,
+    transparent
+);
+
+.#{iv.$class-prefix}skeleton {
+    display: block;
+    background-color: dv.$skeleton-lightest;
+    border-radius: 5px;
+
+    position: relative;
+    overflow: hidden;
+
+    &::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: -150%;
+        width: 150%;
+        height: 100%;
+        background: $background-linear-gradient-skeleton;
+        animation: shimmer 1.5s infinite;
+    }
+}
+
+@keyframes shimmer {
+    0% {
+        left: -150%;
+    }
+    100% {
+        left: 100%;
+    }
+}
