@@ -1,0 +1,41 @@
+@use "@packages/sass/src/utilities/derived-variables" as dv;
+
+$disabled-bg: dv.$scheme-invert-ter;
+$disabled-text: dv.$text-weak;
+
+.dropdown {
+    appearance: none;
+    background-color: dv.$scheme-main;
+    border: 2px solid dv.$primary;
+    color: dv.$primary;
+    font-size: 15px;
+    padding: 8px 12px;
+    border-radius: 6px;
+    font-family: inherit;
+    cursor: pointer;
+    transition: background-color 0.2s ease, border-color 0.2s ease;
+
+    &:hover {
+        background-color: dv.$scheme-main-bis;
+    }
+
+    &:focus {
+        outline: none;
+        border-color: dv.$primary;
+    }
+
+    option {
+        color: dv.$dark;
+    }
+}
+
+.fullWidth {
+    width: 100%;
+}
+
+.disabled {
+    background-color: $disabled-bg;
+    color: $disabled-text;
+    border-color: $disabled-bg;
+    cursor: not-allowed;
+}
