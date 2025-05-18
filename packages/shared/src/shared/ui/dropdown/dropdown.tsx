@@ -1,24 +1,22 @@
-import { FC } from "react";
-import { DropdownProps } from "./dropdown-type";
-import styles from "./styles/dropdown.module.scss";
-import clsx from "clsx";
+'use client'
 
-// <Dropdown
-//   value={selected}
-//   onChange={setSelected}
-//   options={[
-//     { label: "Один", value: "1" },
-//   ]}
-//   placeholder="123"
-//   fullWidth
-// />
+import { FC, ChangeEvent } from 'react';
+import { DropdownProps } from './dropdown-type.ts';
+import styles from './styles/dropdown.module.scss';
+import clsx from 'clsx';
+
+// <Dropdown value={" 1 "} onChange={onChange} fullWidth disabled>
+//     <DropdownOption value="1" >Первый</DropdownOption>
+//     <DropdownOption value="2" disabled>Второй (недоступен)</DropdownOption>
+//     <DropdownOption value="3" hidden>третий</DropdownOption>
+// </Dropdown>
 
 export const Dropdown: FC<DropdownProps> = ({
-    options,
     value,
     onChange,
-    className = "",
-    placeholder = "",
+    children,
+    className = '',
+    placeholder,
     disabled = false,
     fullWidth = false,
 }) => {
@@ -33,7 +31,7 @@ export const Dropdown: FC<DropdownProps> = ({
         <select
             className={classes}
             value={value}
-            onChange={(e) => onChange(e.target.value)}
+            onChange={(e: ChangeEvent<HTMLSelectElement>) => onChange(e.target.value)}
             disabled={disabled}
         >
             {placeholder && (
@@ -41,11 +39,7 @@ export const Dropdown: FC<DropdownProps> = ({
                     {placeholder}
                 </option>
             )}
-            {options.map((option) => (
-                <option key={option.value} value={option.value}>
-                    {option.label}
-                </option>
-            ))}
+            {children}
         </select>
     );
 };

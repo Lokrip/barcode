@@ -9,11 +9,16 @@ $disabled-text: dv.$text-weak;
     border: 2px solid dv.$primary;
     color: dv.$primary;
     font-size: 15px;
-    padding: 8px 12px;
+    padding: 8px 40px 8px 12px;
     border-radius: 6px;
-    font-family: inherit;
+    font-family: dv.$family-primary;
     cursor: pointer;
-    transition: background-color 0.2s ease, border-color 0.2s ease;
+    transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg fill='%23007bff' height='16' viewBox='0 0 24 24' width='16' xmlns='http://www.w3.org/2000/svg'%3e%3cpath d='M7 10l5 5 5-5z'/%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+    background-size: 16px 16px;
 
     &:hover {
         background-color: dv.$scheme-main-bis;
@@ -25,7 +30,19 @@ $disabled-text: dv.$text-weak;
     }
 
     option {
+        background-color: dv.$scheme-main;
         color: dv.$dark;
+        padding: 6px 8px;
+
+        &[disabled] {
+            background-color: $disabled-bg;
+            color: $disabled-text;
+            cursor: not-allowed;
+        }
+    }
+
+    option[value=""] {
+        color: $disabled-text;
     }
 }
 
