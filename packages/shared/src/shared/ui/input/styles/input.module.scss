@@ -1,0 +1,134 @@
+@use "@packages/sass/src/utilities/derived-variables" as dv;
+@use "@packages/sass/src/utilities/initial-variables" as iv;
+
+$input-color: dv.$text;
+$input-bg: dv.$scheme-invert;
+$input-border-color: dv.$border;
+$input-hover-border-color: dv.$primary;
+$input-focus-border-color: dv.$primary;
+$input-error-color: dv.$danger;
+$input-disabled-bg: dv.$scheme-invert-ter;
+$input-disabled-color: dv.$text-weak;
+
+.inputWrapper {
+    position: relative;
+    display: inline-flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.input {
+    width: 100%;
+    border: 1px solid $input-border-color;
+    border-radius: 6px;
+    padding: 8px 12px;
+    font-family: dv.$family-primary;
+    font-size: dv.$size-medium;
+    color: $input-color;
+    background-color: $input-bg;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+
+    &:hover:not(:disabled) {
+        border-color: $input-hover-border-color;
+    }
+
+    &:focus {
+        outline: none;
+        border-color: $input-focus-border-color;
+        box-shadow: 0 0 0 2px rgba($input-focus-border-color, 0.2);
+    }
+
+    &:disabled {
+        background-color: $input-disabled-bg;
+        color: $input-disabled-color;
+        cursor: not-allowed;
+    }
+
+    &::placeholder {
+        color: dv.$text-weak;
+    }
+}
+
+.label {
+    margin-bottom: 4px;
+    font-size: dv.$size-small;
+    color: $input-color;
+}
+
+.helperText {
+    margin-top: 4px;
+    font-size: dv.$size-small;
+    color: dv.$text-weak;
+}
+
+.error {
+    color: $input-error-color;
+}
+
+.errorInput {
+    border-color: $input-error-color;
+
+    &:hover:not(:disabled),
+    &:focus {
+        border-color: $input-error-color;
+    }
+}
+
+// Sizes
+.small {
+    padding: 4px 8px;
+    font-size: dv.$size-small;
+}
+
+.medium {
+    padding: 8px 12px;
+    font-size: dv.$size-medium;
+}
+
+.large {
+    padding: 12px 16px;
+    font-size: dv.$size-large;
+}
+
+// Variants
+.outlined {
+    background-color: transparent;
+}
+
+.filled {
+    background-color: $input-bg;
+}
+
+.standard {
+    border: none;
+    border-bottom: 1px solid $input-border-color;
+    border-radius: 0;
+    padding-left: 0;
+    padding-right: 0;
+}
+
+// Icons
+.iconWrapper {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    align-items: center;
+    color: dv.$text-weak;
+}
+
+.startIcon {
+    left: 12px;
+}
+
+.endIcon {
+    right: 12px;
+}
+
+.withStartIcon {
+    padding-left: 36px;
+}
+
+.withEndIcon {
+    padding-right: 36px;
+} 
