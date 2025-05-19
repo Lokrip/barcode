@@ -4,14 +4,15 @@
 
 @use "sass:map";
 @use "sass:math";
+@use "sass:meta";
 
 $flex-gaps: (
-  center: math.div($gap, 3),
-  start: math.div($gap, 4),
-  end: math.div($gap, 4),
-  between: math.div($gap, 2),
-  around: math.div($gap, 2),
-  evenly: math.div($gap, 2)
+  center: math.div(iv.$gap, 3),
+  start: math.div(iv.$gap, 4),
+  end: math.div(iv.$gap, 4),
+  between: math.div(iv.$gap, 2),
+  around: math.div(iv.$gap, 2),
+  evenly: math.div(iv.$gap, 2)
 );
 
 @function get-flex-gap($type) {
@@ -21,12 +22,12 @@ $flex-gaps: (
 
 @each $key, $value in $flex-gaps {
     .#{iv.$class-prefix}flex-#{$key} {
-        @include fmx.flex-#{$key};
+        @include fmx.apply-flex($key);
         gap: get-flex-gap($key);
     }
 
     .#{iv.$class-prefix}flex-column-#{$key} {
-        @include fmx.flex-column-#{$key};
+        @include fmx.apply-flex-column($key);
         gap: get-flex-gap($key);
     }
 }

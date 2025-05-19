@@ -101,3 +101,35 @@
 @mixin flex-no-shrink {
   flex-shrink: 0;
 }
+
+// ============================================================================
+// Universal switch-mixins
+// ============================================================================
+
+@mixin apply-flex($key) {
+    @if $key == center {
+        @include flex-center;
+    } @else if $key == start {
+        @include flex-start;
+    } @else if $key == end {
+        @include flex-end;
+    } @else if $key == between {
+        @include flex-between;
+    } @else if $key == around {
+        @include flex-around;
+    } @else if $key == evenly {
+        @include flex-evenly;
+    }
+}
+
+@mixin apply-flex-column($key) {
+    @if $key == center {
+        @include flex-column-center;
+    } @else if $key == start {
+        @include flex-column-start;
+    } @else if $key == end {
+        @include flex-column-end;
+    } @else if $key == between {
+        @include flex-column-between;
+    }
+}
