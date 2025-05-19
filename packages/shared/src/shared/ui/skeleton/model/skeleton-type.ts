@@ -1,5 +1,4 @@
 import { ComponentPropsWithRef, ElementType } from "react";
-import { ClassNameType } from "../../../types/react";
 
 export type SkeletonElements =
     | "div"
@@ -25,10 +24,3 @@ export interface BaseSkeletonType {
     animation?: SkeletonAnimation;
     component?: SkeletonElements;
 }
-
-export interface SkeletonProps extends ClassNameType, BaseSkeletonType {}
-
-export type SkeletonRootGenericProps<C extends ElementType> = ClassNameType & {
-    as: C;
-    ownerState: BaseSkeletonType;
-};

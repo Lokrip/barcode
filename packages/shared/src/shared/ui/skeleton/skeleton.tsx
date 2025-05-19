@@ -4,12 +4,11 @@ import { ElementType, forwardRef } from "react";
 import {
     BaseSkeletonType,
     PolymorphicRef,
-    SkeletonProps,
-    SkeletonRootGenericProps,
 } from "./model/skeleton-type";
 import styles from "./styles/skeleton.module.scss";
 import { correctClass } from "../../utils/utils";
 import clsx from "clsx";
+import { SkeletonProps, SkeletonRootGenericProps } from "./model/skeleton-props";
 
 export const SkeletonRoot = forwardRef(
     <C extends ElementType = "span">(
