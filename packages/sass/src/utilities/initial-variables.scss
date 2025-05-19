@@ -135,6 +135,27 @@ $breakpoints: (
     ),
 ) !default;
 
+// Animation
+
+$animation-duration-short: 150ms !default;
+$animation-duration-base: 300ms !default;
+$animation-duration-long: 600ms !default;
+$animation-duration-extra-long: 1000ms !default;
+$animation-duration-very-long: 1500ms !default;
+
+$animation-ease-in: ease-in !default;
+$animation-ease-out: ease-out !default;
+$animation-ease-in-out: ease-in-out !default;
+$animation-linear: linear !default;
+
+$animation-fade-in: fade-in 300ms ease-out forwards !default;
+$animation-slide-up: slide-up 300ms ease-out forwards !default;
+$animation-zoom-in: zoom-in 200ms ease-in-out forwards !default;
+
+$animation-steps-fast: 10 !default;
+$animation-steps-medium: 20 !default;
+$animation-steps-slow: 40 !default;
+
 // Miscellaneous
 
 $duration: 294ms !default;
