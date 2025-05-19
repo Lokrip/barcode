@@ -1,5 +1,5 @@
 import { PropsWithChildren, ReactNode } from "react";
-import { ClassNameType } from "../../types/react";
+import { ClassNameType } from "../../../types/react.ts";
 
 export type ButtonVariant = "text" | "contained" | "outlined";
 export type ButtonSize = "small" | "medium" | "large";
