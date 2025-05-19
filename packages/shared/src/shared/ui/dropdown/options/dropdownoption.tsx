@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { DropdownOptionProps } from '../model/dropdown-type.ts';
+import { DropdownOptionProps } from '../model/dropdown-props.ts';
 
 export const DropdownOption: FC<DropdownOptionProps> = ({
     value,

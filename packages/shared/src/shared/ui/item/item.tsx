@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { ItemProps } from "./model/item-type.ts";
+import { ItemProps } from "./model/item-props.ts";
 import { correctClass } from "../../utils/utils";
 
 export const ItemContainer: FC<ItemProps> = ({ children, className, ...props }) => {

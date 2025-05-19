@@ -1,6 +1,6 @@
 import { forwardRef, Fragment } from "react";
 import { correctClass } from "../../utils/utils";
-import { ListContainerProps, ListProps } from "./model/list-type.ts";
+import { ListContainerProps, ListProps } from "./model/list-props";
 
 import styles from "./style/list.module.scss"
 

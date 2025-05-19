@@ -1,7 +1,7 @@
 'use client'
 
 import { FC, ChangeEvent } from 'react';
-import { DropdownProps } from './model/dropdown-type.ts';
+import { DropdownProps } from './model/dropdown-props.ts';
 import styles from './styles/dropdown.module.scss';
 import clsx from 'clsx';
 

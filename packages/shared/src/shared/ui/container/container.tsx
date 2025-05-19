@@ -1,5 +1,5 @@
 import { FC, memo } from "react";
-import { ContainerProps } from "./model/container-type.ts";
+import { ContainerProps } from "./model/container-props";
 import { correctClass } from "../../utils/utils";
 
 export const Container: FC<ContainerProps> = memo(({maxWidth, className, children}) => {
