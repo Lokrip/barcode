@@ -1,4 +1,4 @@
-'use client'
+'use client';
 
 import { FC, ChangeEvent } from 'react';
 import { DropdownProps } from './model/dropdown-props.ts';
