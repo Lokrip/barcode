@@ -19,8 +19,8 @@ export type PolymorphicRef<C extends ElementType> =
     ComponentPropsWithRef<C>["ref"];
 
 export interface BaseSkeletonType {
-    width: number;
-    height: number;
+    width?: number;
+    height?: number;
     variant?: SkeletonVariant;
     animation?: SkeletonAnimation;
     component?: SkeletonElements;

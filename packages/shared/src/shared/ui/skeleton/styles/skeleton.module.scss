@@ -1,6 +1,10 @@
 @use "@packages/sass/src/utilities/initial-variables" as iv;
 @use "@packages/sass/src/utilities/derived-variables" as dv;
 
+@use "./animation.scss";
+
+@use "sass:map";
+
 $background-linear-gradient-skeleton: linear-gradient(
     90deg,
     transparent,
@@ -8,15 +12,38 @@ $background-linear-gradient-skeleton: linear-gradient(
     transparent
 );
 
+$skeleton-text-size: iv.$size-4;
+$skeleton-block-size: iv.$size-2;
+$skeleton-variants: (
+    circular: (
+        radius: iv.$radius-rounded,
+        height: $skeleton-block-size,
+        width: $skeleton-block-size
+    ),
+    rectangular: (
+        radius: 0%,
+        height: $skeleton-block-size,
+    ),
+    text: (
+        radius: iv.$radius-medium,
+        height: $skeleton-text-size,
+    ),
+    rounded: (
+        radius: iv.$radius-medium,
+        height: $skeleton-block-size,
+    ),
+);
+
 .#{iv.$class-prefix}skeleton {
     display: block;
     background-color: dv.$skeleton-lightest;
-    border-radius: 5px;
 
     position: relative;
     overflow: hidden;
 
-    &::after {
+    width: 100%;
+
+    &.#{iv.$class-prefix}wave::after {
         content: "";
         position: absolute;
         top: 0;
@@ -24,15 +51,24 @@ $background-linear-gradient-skeleton: linear-gradient(
         width: 150%;
         height: 100%;
         background: $background-linear-gradient-skeleton;
-        animation: shimmer 1.5s infinite;
+        animation: wave iv.$animation-duration-very-long infinite;
     }
-}
 
-@keyframes shimmer {
-    0% {
-        left: -150%;
+    &.#{iv.$class-prefix}pulse {
+        animation: pulse iv.$animation-duration-very-long iv.$easing infinite;
     }
-    100% {
-        left: 100%;
+
+    @each $name, $props in $skeleton-variants {
+        &.#{iv.$class-prefix}#{$name} {
+            border-radius: map.get($props, radius);
+
+            @if map.has-key($props, height) {
+                height: map.get($props, height);
+            }
+
+            @if map.has-key($props, width) {
+                width: map.get($props, width);
+            }
+        }
     }
 }

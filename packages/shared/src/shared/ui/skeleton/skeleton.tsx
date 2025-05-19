@@ -20,7 +20,7 @@ export const SkeletonRoot = forwardRef(
             width,
             height,
             animation = "pulse",
-            variant = "text",
+            variant = "rounded",
         } = ownerState || "";
 
         const classNameValid = correctClass(
@@ -51,7 +51,7 @@ export const Skeleton = forwardRef<HTMLElement, SkeletonProps>(
         {
             component = "span",
             animation = "pulse",
-            variant = "text",
+            variant = "rounded",
             width,
             height,
             className,
