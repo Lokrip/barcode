@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { InputProps } from './input-type';
+import { InputProps } from './input-type.ts';
 import styles from './styles/input.module.scss';
 
 export const Input: FC<InputProps> = ({
@@ -14,6 +14,7 @@ export const Input: FC<InputProps> = ({
     endIcon,
     fullWidth = false,
     onChange,
+    loading = false,
     ...props
 }) => {
     const inputClasses = [

@@ -1,5 +1,5 @@
-import { PropsWithChildren, ReactNode } from "react";
-import { ClassNameType } from "../../types/react";
+import { ReactNode, PropsWithChildren } from 'react';
+import { ClassNameType } from '../../types/react';
 
 export type InputSize = 'small' | 'medium' | 'large';
 export type InputVariant = 'outlined' | 'filled' | 'standard';
@@ -16,7 +16,4 @@ export interface InputProps extends PropsWithChildren, ClassNameType {
     endIcon?: ReactNode;
     loading?: boolean;
     loadingText?: string;
-    helperText?: string;
-    label?: string;
-    error?: string;
 }
