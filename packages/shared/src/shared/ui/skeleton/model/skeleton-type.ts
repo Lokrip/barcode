@@ -1,5 +1,5 @@
 import { ComponentPropsWithRef, ElementType } from "react";
-import { ClassNameType } from "../../types/react";
+import { ClassNameType } from "../../../types/react";
 
 export type SkeletonElements =
     | "div"

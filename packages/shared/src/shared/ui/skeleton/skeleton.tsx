@@ -6,7 +6,7 @@ import {
     PolymorphicRef,
     SkeletonProps,
     SkeletonRootGenericProps,
-} from "./skeleton-type";
+} from "./model/skeleton-type";
 import styles from "./styles/skeleton.module.scss";
 import { correctClass } from "../../utils/utils";
 import clsx from "clsx";
