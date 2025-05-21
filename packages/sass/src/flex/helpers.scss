@@ -7,28 +7,26 @@
 @use "sass:meta";
 
 $flex-gaps: (
-  center: math.div(iv.$gap, 3),
-  start: math.div(iv.$gap, 4),
-  end: math.div(iv.$gap, 4),
-  between: math.div(iv.$gap, 2),
-  around: math.div(iv.$gap, 2),
-  evenly: math.div(iv.$gap, 2)
+    center: math.div(iv.$gap, 3),
+    start: math.div(iv.$gap, 4),
+    end: math.div(iv.$gap, 4),
+    between: math.div(iv.$gap, 2),
+    around: math.div(iv.$gap, 2),
+    evenly: math.div(iv.$gap, 2),
 );
 
 @function get-flex-gap($type) {
-  @return map.get($flex-gaps, $type);
+    @return map.get($flex-gaps, $type);
 }
-
 
 @each $key, $value in $flex-gaps {
     .#{iv.$class-prefix}flex-#{$key} {
-        @include fmx.apply-flex($key);
+        @include fmx.apply-flex(fmx.$flex-map, $key);
         gap: get-flex-gap($key);
     }
 
     .#{iv.$class-prefix}flex-column-#{$key} {
-        @include fmx.apply-flex-column($key);
+        @include fmx.apply-flex(fmx.$flex-column-map, $key);
         gap: get-flex-gap($key);
     }
 }
-

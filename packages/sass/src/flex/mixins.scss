@@ -105,31 +105,55 @@
 // ============================================================================
 
 $flex-map: (
-    center: flex-center,
-    start: flex-start,
-    end: flex-end,
-    between: flex-between,
-    around: flex-around,
-    evenly: flex-evenly,
-);
+    center: (
+        justify-content: center,
+        align-items: center,
+    ),
+    start: (
+        justify-content: flex-start,
+        align-items: flex-start,
+    ),
+    end: (
+        justify-content: flex-end,
+        align-items: flex-end,
+    ),
+    between: (
+        justify-content: space-between,
+        align-items: center,
+    ),
+) !default;
 
 $flex-column-map: (
-    center: flex-column-center,
-    start: flex-column-start,
-    end: flex-column-end,
-    between: flex-column-between,
-);
+    center: (
+        flex-direction: column,
+        justify-content: center,
+        align-items: center,
+    ),
+    start: (
+        flex-direction: column,
+        justify-content: flex-start,
+        align-items: flex-start,
+    ),
+    end: (
+        flex-direction: column,
+        justify-content: flex-end,
+        align-items: flex-end,
+    ),
+    between: (
+        flex-direction: column,
+        justify-content: space-between,
+        align-items: center,
+    ),
+) !default;
 
-@mixin apply-flex($key) {
-    $mixin-name: map-get($flex-map, $key);
-    @if $mixin-name {
-        @include #{$mixin-name};
-    }
-}
+@mixin apply-flex($map, $key, $map-name: "map") {
+    $styles: map-get($map, $key);
 
-@mixin apply-flex-column($key) {
-    $mixin-name: map-get($flex-column-map, $key);
-    @if $mixin-name {
-        @include #{$mixin-name};
+    @if $styles {
+        @each $prop, $value in $styles {
+            #{$prop}: #{$value};
+        }
+    } @else {
+        @warn "Unknown key `#{$key}` in #{$map-name}";
     }
 }
