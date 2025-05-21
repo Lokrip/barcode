@@ -7,57 +7,55 @@
 
 /// Flex row with items aligned to the start
 @mixin flex-start {
-  @include mx.flex(row, flex-start, stretch, nowrap);
+    @include mx.flex(row, flex-start, stretch, nowrap);
 }
 
 /// Flex row with items centered
 @mixin flex-center {
-  @include mx.flex(row, center, center, nowrap);
+    @include mx.flex(row, center, center, nowrap);
 }
 
 /// Flex row with items aligned to the end
 @mixin flex-end {
-  @include mx.flex(row, flex-end, end, nowrap);
+    @include mx.flex(row, flex-end, end, nowrap);
 }
 
 /// Flex row with space between items
 @mixin flex-between {
-  @include mx.flex(row, space-between, center, nowrap);
+    @include mx.flex(row, space-between, center, nowrap);
 }
 
 /// Flex row with space around items
 @mixin flex-around {
-  @include mx.flex(row, space-around, center, nowrap);
+    @include mx.flex(row, space-around, center, nowrap);
 }
 
 /// Flex row with space evenly between items
 @mixin flex-evenly {
-  @include mx.flex(row, space-evenly, center, nowrap);
+    @include mx.flex(row, space-evenly, center, nowrap);
 }
 
 // ============================================================================
 // Flexbox Direction + Alignment (Column)
 // ============================================================================
 
-
 @mixin flex-column-start {
-  @include mx.flex(column, flex-start, stretch, nowrap);
+    @include mx.flex(column, flex-start, stretch, nowrap);
 }
 
 /// Flex column with items centered
 @mixin flex-column-center {
-  @include mx.flex(column, center, center, nowrap);
+    @include mx.flex(column, center, center, nowrap);
 }
 
 @mixin flex-column-end {
-  @include mx.flex(column, flex-end, end, nowrap);
+    @include mx.flex(column, flex-end, end, nowrap);
 }
 
 /// Flex column with space between items
 @mixin flex-column-between {
-  @include mx.flex(column, space-between, stretch, nowrap);
+    @include mx.flex(column, space-between, stretch, nowrap);
 }
-
 
 // ============================================================================
 // Flex Wrapping Utilities
@@ -65,17 +63,17 @@
 
 /// Flex row with wrapping, aligned to start
 @mixin flex-wrap {
-  @include mx.flex(row, flex-start, flex-start, wrap);
+    @include mx.flex(row, flex-start, flex-start, wrap);
 }
 
 /// Flex row with wrapping, centered
 @mixin flex-wrap-center {
-  @include mx.flex(row, center, center, wrap);
+    @include mx.flex(row, center, center, wrap);
 }
 
 /// Flex column with wrapping
 @mixin flex-column-wrap {
-  @include mx.flex(column, flex-start, flex-start, wrap);
+    @include mx.flex(column, flex-start, flex-start, wrap);
 }
 
 // ============================================================================
@@ -84,52 +82,54 @@
 
 /// Flex item that grows and shrinks as needed
 @mixin flex-grow {
-  flex: 1 1 auto;
+    flex: 1 1 auto;
 }
 
 /// Flex item that does not grow
 @mixin flex-no-grow {
-  flex: 0 0 auto;
+    flex: 0 0 auto;
 }
 
 /// Flex item that can shrink
 @mixin flex-shrink {
-  flex-shrink: 1;
+    flex-shrink: 1;
 }
 
 /// Flex item that does not shrink
 @mixin flex-no-shrink {
-  flex-shrink: 0;
+    flex-shrink: 0;
 }
 
 // ============================================================================
 // Universal switch-mixins
 // ============================================================================
 
+$flex-map: (
+    center: flex-center,
+    start: flex-start,
+    end: flex-end,
+    between: flex-between,
+    around: flex-around,
+    evenly: flex-evenly,
+);
+
+$flex-column-map: (
+    center: flex-column-center,
+    start: flex-column-start,
+    end: flex-column-end,
+    between: flex-column-between,
+);
+
 @mixin apply-flex($key) {
-    @if $key == center {
-        @include flex-center;
-    } @else if $key == start {
-        @include flex-start;
-    } @else if $key == end {
-        @include flex-end;
-    } @else if $key == between {
-        @include flex-between;
-    } @else if $key == around {
-        @include flex-around;
-    } @else if $key == evenly {
-        @include flex-evenly;
+    $mixin-name: map-get($flex-map, $key);
+    @if $mixin-name {
+        @include #{$mixin-name};
     }
 }
 
 @mixin apply-flex-column($key) {
-    @if $key == center {
-        @include flex-column-center;
-    } @else if $key == start {
-        @include flex-column-start;
-    } @else if $key == end {
-        @include flex-column-end;
-    } @else if $key == between {
-        @include flex-column-between;
+    $mixin-name: map-get($flex-column-map, $key);
+    @if $mixin-name {
+        @include #{$mixin-name};
     }
 }
