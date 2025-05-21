@@ -1,0 +1,41 @@
+@use "sass:color";
+
+@keyframes button-loading-spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes button-press {
+    0% {
+        transform: scale(1);
+        box-shadow: none;
+    }
+    50% {
+        transform: scale(0.96);
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    }
+    100% {
+        transform: scale(1);
+        box-shadow: none;
+    }
+}
+
+@mixin loading-spinner($size, $color) {
+    content: "";
+    box-sizing: border-box;
+    display: inline-block;
+    width: $size;
+    height: $size;
+    border: 2px solid $color;
+    border-top-color: transparent;
+    border-radius: 50%;
+    animation: button-loading-spin 1s linear infinite;
+}
+
+@mixin button-press-animation {
+    animation: button-press 0.2s ease forwards;
+}

@@ -1,48 +1,52 @@
-import { FC } from "react";
-import { ButtonProps } from "./model/button-props.ts";
+import { ElementType, forwardRef, JSX } from "react";
+import { ButtonProps, PolymorphicRef } from "./model/button-props";
+import clsx from "clsx";
 import styles from "./styles/button.module.scss";
 
-// <Button
-//   variant="outlined"
-//   size="large"
-//   fullWidth
-//   startIcon={<img src="" />}
-//   loading={true}
-//   loadingText="Загружаем..."
-// >
-//   Отправить
-// </Button>
+const ButtonBase = <C extends ElementType = "button">(
+    {
+        as,
+        variant = "contained",
+        size = "medium",
+        type,
+        className = "",
+        disabled = false,
+        onClick,
+        fullWidth = false,
+        startIcon,
+        endIcon,
+        loading = false,
+        loadingText,
+        children,
+        ...restProps
+    }: ButtonProps<C>,
+    ref: PolymorphicRef<C>
+) => {
+    const Component = as || "button";
+    const isButton = Component === "button";
 
-export const Button: FC<ButtonProps> = ({
-    variant = "contained",
-    size = "medium",
-    type = "button",
-    className = "",
-    disabled = false,
-    onClick,
-    fullWidth = false,
-    startIcon,
-    endIcon,
-    loading = false,
-    loadingText,
-    children,
-}) => {
-    const classes = [
+    const classes = clsx(
         styles.btn,
         styles[variant],
         styles[size],
-        fullWidth ? styles.fullWidth : "",
-        className,
-    ]
-        .join(" ")
-        .trim();
+        {
+            [styles.fullWidth]: fullWidth,
+            [styles.loading]: loading,
+        },
+        className
+    );
 
     return (
-        <button
-            type={type}
+        <Component
+            ref={ref}
+            type={isButton ? type || "button" : undefined}
             className={classes}
-            disabled={disabled || loading}
+            disabled={isButton ? disabled || loading : undefined}
             onClick={onClick}
+            aria-busy={loading}
+            role={!isButton ? "button" : undefined}
+            tabIndex={!isButton ? 0 : undefined}
+            {...restProps}
         >
             {startIcon && !loading && (
                 <span className={styles.icon}>{startIcon}</span>
@@ -51,6 +55,12 @@ export const Button: FC<ButtonProps> = ({
             {endIcon && !loading && (
                 <span className={styles.icon}>{endIcon}</span>
             )}
-        </button>
+        </Component>
     );
 };
+
+export const Button = forwardRef(ButtonBase as any) as unknown as <
+    C extends ElementType = "button"
+>(
+    props: ButtonProps<C> & { ref?: PolymorphicRef<C> }
+) => JSX.Element;
