@@ -8,11 +8,20 @@
             "import": "./index.ts",
             "require": "./index.js"
         },
-        "./layouts/sass-layouts": {
-            "default": "./src/shared/layouts/sass-layouts.tsx"
+        "./config/navigation-links": {
+            "default": "./src/config/navigation-links.ts"
         },
-        "./layouts/tailwind-layouts.tsx": {
-            "default": "./src/shared/layouts/tailwind-layouts.tsx"
+        "./config/route-paths": {
+            "default": "./src/config/route-paths.ts"
+        },
+        "./lib/react": {
+            "default": "./src/lib/react.tsx"
+        },
+        "./types/nav-links": {
+            "default": "./src/types/nav-links.ts"
+        },
+        "./types/react": {
+            "default": "./src/types/react.ts"
         }
     },
     "type": "module",

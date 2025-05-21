@@ -25,5 +25,5 @@
         "@packages/sass": ["./"]
     }
   },
-  "include": ["src"]
+  "include": ["src", "../widgets/src/layouts/sass-layouts.tsx"]
 }
