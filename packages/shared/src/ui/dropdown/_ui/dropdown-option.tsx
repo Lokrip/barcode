@@ -1,13 +1,13 @@
-import { useDropdownContext } from "../dropdown-context";
+import { useDropdownContext } from "../model/useDropdownContext.ts";
 import clsx from "clsx";
 import styles from "../styles/dropdown.module.scss";
 import type { DropdownOptionProps } from "../model/dropdown-props";
 
 export const DropdownOption = ({
-                                   value,
-                                   children,
-                                   className,
-                               }: DropdownOptionProps) => {
+   value,
+   children,
+   className,
+}: DropdownOptionProps) => {
     const { onSelect, selectedValue } = useDropdownContext();
 
     const isActive = selectedValue === value;

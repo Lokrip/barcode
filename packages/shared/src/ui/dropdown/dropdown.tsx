@@ -1,6 +1,6 @@
 'use client';
 
-import {
+import React, {
     ElementType,
     forwardRef,
     JSX,
@@ -10,7 +10,7 @@ import {
 } from "react";
 import styles from "./styles/dropdown.module.scss";
 import clsx from "clsx";
-import { DropdownContext } from "./dropdown-context";
+import { UseDropdownContext } from "./model/useDropdownContext.ts";
 import type { DropdownProps } from "./model/dropdown-props";
 import type { PolymorphicRef } from "./model/dropdown-types";
 
@@ -67,7 +67,7 @@ function DropdownBase(
     }, [open]);
 
     return (
-        <DropdownContext.Provider value={{ onSelect: handleSelect, selectedValue }}>
+        <UseDropdownContext.Provider value={{onSelect: handleSelect, selectedValue}}>
             <Component
                 ref={(node: HTMLElement | null) => {
                     dropdownRef.current = node;
@@ -92,7 +92,7 @@ function DropdownBase(
                 </button>
                 {open && <div className={styles.menu}>{children}</div>}
             </Component>
-        </DropdownContext.Provider>
+        </UseDropdownContext.Provider>
     );
 }
 
