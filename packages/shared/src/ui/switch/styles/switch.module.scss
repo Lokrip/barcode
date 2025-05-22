@@ -1,0 +1,98 @@
+@use "@packages/sass/src/utilities/initial-variables" as iv;
+@use "@packages/sass/src/utilities/derived-variables" as dv;
+@use "./animation.scss" as anim;
+@use "sass:map";
+
+$switch-radius: iv.$radius-rounded;
+
+$switch-colors: (
+    primary: dv.$primary,
+    secondary: dv.$secondary,
+    success: dv.$success,
+    error: dv.$danger,
+    warning: dv.$warning,
+    info: dv.$info,
+    off-bg: #ccc,
+    disabled-bg: #aaa,
+    thumb-bg: white,
+    disabled-thumb-bg: #eee,
+);
+
+$switch-sizes: (
+    small: (width: 2.25rem, height: 1.25rem),
+    medium: (width: 2.75rem, height: 1.5rem),
+    large: (width: 3.5rem, height: 2rem),
+);
+
+.#{iv.$class-prefix}switch {
+    position: relative;
+    display: inline-block;
+    border-radius: $switch-radius;
+    background-color: map.get($switch-colors, off-bg);
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+
+    // Размеры и переменные
+    @each $size, $dim in $switch-sizes {
+        &.#{iv.$class-prefix}#{$size} {
+            $width: map.get($dim, width);
+            $height: map.get($dim, height);
+            $thumb-size: $height;
+
+            width: $width;
+            height: $height;
+
+            --switch-width: #{$width};
+            --switch-height: #{$height};
+            --thumb-size: #{$thumb-size};
+            --thumb-offset: calc(var(--switch-width) - var(--thumb-size) - 0.25rem);
+        }
+    }
+
+    // Thumb
+    &::before {
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: 0.125rem;
+        width: calc(var(--thumb-size) - 10%);
+        height: calc(var(--thumb-size) - 15%);
+        background-color: map.get($switch-colors, thumb-bg);
+        border-radius: 50%;
+        transform: translateY(-50%) translateX(0);
+        transition: transform 0.3s ease, background-color 0.3s ease;
+    }
+
+    // Checked / Off animations
+    &.#{iv.$class-prefix}checked::before {
+        transform: translateY(-50%) translateX(var(--thumb-offset));
+        animation: anim.$ivSwitchThumbSlideOn 0.3s forwards;
+    }
+
+    &:not(.#{iv.$class-prefix}checked)::before {
+        transform: translateY(-50%) translateX(0);
+        animation: anim.$ivSwitchThumbSlideOff 0.3s forwards;
+    }
+
+    // Цвета тем
+    @each $colorName, $colorValue in map.remove($switch-colors, off-bg, thumb-bg, disabled-bg, disabled-thumb-bg) {
+        &.#{iv.$class-prefix}#{$colorName}.#{iv.$class-prefix}checked {
+            background-color: $colorValue;
+        }
+
+        &.#{iv.$class-prefix}#{$colorName}:focus-visible {
+            outline: 2px solid $colorValue;
+            outline-offset: 2px;
+        }
+    }
+
+    // Disabled
+    &.#{iv.$class-prefix}disabled {
+        background-color: map.get($switch-colors, disabled-bg);
+        cursor: not-allowed;
+
+        &::before {
+            background-color: map.get($switch-colors, disabled-thumb-bg);
+        }
+    }
+}

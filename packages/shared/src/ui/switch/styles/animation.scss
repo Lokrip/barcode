@@ -1,0 +1,20 @@
+@keyframes ivSwitchThumbSlideOn {
+    from {
+        transform: translateY(-50%) translateX(0);
+    }
+    to {
+        transform: translateY(-50%) translateX(calc(100%));
+    }
+}
+
+@keyframes ivSwitchThumbSlideOff {
+    from {
+        transform: translateY(-50%) translateX(calc(100%));
+    }
+    to {
+        transform: translateY(-50%) translateX(0);
+    }
+}
+
+$ivSwitchThumbSlideOn: ivSwitchThumbSlideOn !default;
+$ivSwitchThumbSlideOff: ivSwitchThumbSlideOff !default;
