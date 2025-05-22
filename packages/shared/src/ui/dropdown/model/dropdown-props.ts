@@ -1,18 +1,21 @@
-import {ReactNode} from "react";
+import {ComponentPropsWithRef, ElementType, ReactNode} from "react";
 
-export interface DropdownProps {
-    value?: string;
-    onChange: (value: string) => void;
-    className?: string;
-    placeholder?: string;
+export interface DropdownOwnProps {
+    label?: ReactNode;
     disabled?: boolean;
     fullWidth?: boolean;
-    children?: React.ReactNode;
+    value?: string | null;
+    onSelect?: (value: string) => void;
+    children?: ReactNode;
+    className?: string;
 }
+
+export type DropdownProps<C extends ElementType> = DropdownOwnProps & {
+    as?: C;
+} & Omit<ComponentPropsWithRef<C>, keyof DropdownOwnProps | "as">;
 
 export interface DropdownOptionProps {
     value: string;
     children: ReactNode;
-    disabled?: boolean;
-    hidden?: boolean;
+    className?: string;
 }

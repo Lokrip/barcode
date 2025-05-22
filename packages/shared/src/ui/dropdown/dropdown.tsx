@@ -1,45 +1,105 @@
 'use client';
 
-import { FC, ChangeEvent } from 'react';
-import { DropdownProps } from './model/dropdown-props.ts';
-import styles from './styles/dropdown.module.scss';
-import clsx from 'clsx';
+import {
+    ElementType,
+    forwardRef,
+    JSX,
+    useState,
+    useEffect,
+    useRef,
+} from "react";
+import styles from "./styles/dropdown.module.scss";
+import clsx from "clsx";
+import { DropdownContext } from "./dropdown-context";
+import type { DropdownProps } from "./model/dropdown-props";
+import type { PolymorphicRef } from "./model/dropdown-types";
 
-// <Dropdown value={" 1 "} onChange={onChange} fullWidth disabled>
-//     <DropdownOption value="1" >Первый</DropdownOption>
-//     <DropdownOption value="2" disabled>Второй (недоступен)</DropdownOption>
-//     <DropdownOption value="3" hidden>третий</DropdownOption>
-// </Dropdown>
+function DropdownBase(
+    {
+        as,
+        label = "Select...",
+        onSelect,
+        children,
+        disabled = false,
+        fullWidth = false,
+        value = null as string | null,
+        className,
+        ...rest
+    }: DropdownProps<ElementType>,
+    ref: PolymorphicRef<ElementType>
+): JSX.Element {
+    const [selectedValue, setSelectedValue] = useState<string | null>(value);
+    const [open, setOpen] = useState(false);
+    const Component = as || "div";
+    const dropdownRef = useRef<HTMLElement | null>(null);
 
-export const Dropdown: FC<DropdownProps> = ({
-    value,
-    onChange,
-    children,
-    className = '',
-    placeholder,
-    disabled = false,
-    fullWidth = false,
-}) => {
-    const classes = clsx(
-        styles.dropdown,
-        fullWidth && styles.fullWidth,
-        disabled && styles.disabled,
-        className
-    );
+    useEffect(() => {
+        setSelectedValue(value);
+    }, [value]);
+
+    const toggle = () => {
+        if (!disabled) setOpen((v) => !v);
+    };
+
+    const handleSelect = (val: string) => {
+        setSelectedValue(val);
+        onSelect?.(val);
+        setOpen(false);
+    };
+
+    useEffect(() => {
+        function handleClickOutside(event: MouseEvent) {
+            if (
+                dropdownRef.current &&
+                !dropdownRef.current.contains(event.target as Node)
+            ) {
+                setOpen(false);
+            }
+        }
+        if (open) {
+            document.addEventListener("mousedown", handleClickOutside);
+        } else {
+            document.removeEventListener("mousedown", handleClickOutside);
+        }
+        return () => {
+            document.removeEventListener("mousedown", handleClickOutside);
+        };
+    }, [open]);
 
     return (
-        <select
-            className={classes}
-            value={value}
-            onChange={(e: ChangeEvent<HTMLSelectElement>) => onChange(e.target.value)}
-            disabled={disabled}
-        >
-            {placeholder && (
-                <option value="" disabled hidden>
-                    {placeholder}
-                </option>
-            )}
-            {children}
-        </select>
+        <DropdownContext.Provider value={{ onSelect: handleSelect, selectedValue }}>
+            <Component
+                ref={(node: HTMLElement | null) => {
+                    dropdownRef.current = node;
+                    if (typeof ref === "function") ref(node);
+                    else if (ref) (ref as React.MutableRefObject<HTMLElement | null>).current = node;
+                }}
+                className={clsx(
+                    styles.dropdown,
+                    disabled && styles.disabled,
+                    fullWidth && styles.fullWidth,
+                    className
+                )}
+                {...rest}
+            >
+                <button
+                    className={styles.trigger}
+                    onClick={toggle}
+                    disabled={disabled}
+                    aria-expanded={open}
+                >
+                    {selectedValue || label}
+                </button>
+                {open && <div className={styles.menu}>{children}</div>}
+            </Component>
+        </DropdownContext.Provider>
     );
-};
+}
+
+const _Dropdown = forwardRef(DropdownBase);
+
+export function Dropdown<C extends ElementType = "div">(
+    props: DropdownProps<C> & { ref?: PolymorphicRef<C> }
+) {
+    return <_Dropdown {...(props as DropdownProps<ElementType>)} />;
+}

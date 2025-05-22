@@ -1,3 +1,2 @@
 export { Dropdown } from './dropdown';
-
-export { DropdownOption } from './_ui/drop-down-option.tsx';
+export { DropdownOption } from './_ui/dropdown-option.tsx';
