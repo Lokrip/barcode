@@ -35,7 +35,7 @@ export const SwitchBase = forwardRef(
             if (!isControlled) setInternalChecked(next);
 
             if (isInput && "target" in e && e.target instanceof HTMLInputElement) {
-                onChange?.(e);
+                onChange?.(e as React.ChangeEvent<HTMLInputElement>);
             } else {
                 const syntheticEvent = {
                     ...e,
