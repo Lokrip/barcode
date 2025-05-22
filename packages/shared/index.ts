@@ -5,6 +5,7 @@ export { Skeleton } from "./src/ui/skeleton";
 export { Dropdown, DropdownOption } from "./src/ui/dropdown";
 export { Item } from "./src/ui/item";
 export { List, ListContainer } from "./src/ui/list";
+export { Checkbox } from "./src/ui/checkbox";
 
 export {
     correctUrl,
