@@ -1,0 +1,56 @@
+@use "@packages/sass/src/utilities/derived-variables" as dv;
+@use "@packages/sass/src/utilities/initial-variables" as iv;
+
+$prefix: iv.$class-prefix;
+
+.#{$prefix}checkbox {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    user-select: none;
+
+    input {
+        position: absolute;
+        opacity: 0;
+        pointer-events: none;
+    }
+
+    .#{$prefix}icon {
+        width: 20px;
+        height: 20px;
+        border: 2px solid dv.$primary;
+        border-radius: 4px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        background-color: white;
+        transition: all 0.2s ease;
+
+        svg {
+            width: 16px;
+            height: 16px;
+        }
+    }
+
+    &.#{$prefix}checked .#{$prefix}icon {
+        background-color: dv.$primary;
+        color: white;
+    }
+
+    &.#{$prefix}indeterminate .#{$prefix}icon {
+        background-color: dv.$primary;
+        color: white;
+    }
+
+    &.#{$prefix}disabled {
+        cursor: not-allowed;
+        opacity: 0.5;
+    }
+
+    .#{$prefix}label {
+        font-family: dv.$family-primary;
+        font-size: dv.$size-medium;
+        color: dv.$text;
+    }
+}
