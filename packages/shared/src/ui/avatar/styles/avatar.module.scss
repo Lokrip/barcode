@@ -1,0 +1,47 @@
+@use "@packages/sass/src/utilities/initial-variables" as iv;
+@use "@packages/sass/src/utilities/derived-variables" as dv;
+@use "sass:map";
+
+$avatar-sizes: (
+    small: 3rem,
+    medium: 5rem,
+    large: 8rem,
+);
+
+$avatar-variants: (
+    circle: 50%,
+    square: 0,
+    rounded: iv.$radius-medium,
+);
+
+.#{iv.$class-prefix}avatar {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    background-color: dv.$scheme-invert-ter;
+    color: dv.$primary;
+    font-weight: bold;
+
+    img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+    }
+
+    @each $name, $radius in $avatar-variants {
+        &.#{iv.$class-prefix}#{$name} {
+            border-radius: $radius;
+        }
+    }
+
+    @each $name, $size in $avatar-sizes {
+        &.#{iv.$class-prefix}#{$name} {
+            width: $size;
+            height: $size;
+            font-size: $size * 0.4;
+        }
+    }
+}

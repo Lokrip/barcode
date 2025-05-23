@@ -7,6 +7,7 @@ export { Item } from "./src/ui/item";
 export { List, ListContainer } from "./src/ui/list";
 export { Checkbox } from "./src/ui/checkbox";
 export { Switch } from "./src/ui/switch";
+export { Avatar } from "./src/ui/avatar";
 
 export {
     correctUrl,
