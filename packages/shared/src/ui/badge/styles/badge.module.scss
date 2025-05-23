@@ -1,0 +1,148 @@
+@use "@packages/sass/src/utilities/initial-variables" as iv;
+@use "@packages/sass/src/utilities/derived-variables" as dv;
+@use "sass:map";
+
+$font-size-1: 0.5rem;
+$font-size-2: 0.75rem;
+$font-size-3: 1rem;
+
+$space-1: 0.25rem;
+$space-2: 0.5rem;
+$space-3: 0.75rem;
+
+$size-dot: 0.15rem;
+$size-1: 1rem;
+$size-2: 1.5rem;
+$size-3: 2rem;
+
+$badge-variants: (
+    standard: (
+        background: dv.$scheme-invert-ter,
+        color: dv.$primary,
+        border: none,
+        border-radius: 50%,
+    ),
+    dot: (
+        background: dv.$scheme-invert-ter,
+        color: transparent,
+        border: none,
+        width: $size-dot,
+        height: $size-dot,
+        border-radius: 50%,
+        size: $size-dot,
+    ),
+    outlined: (
+        background: transparent,
+        color: dv.$scheme-invert-ter,
+        border: 2px solid dv.$primary
+    ),
+);
+
+$badge-sizes: (
+    small: (
+        font-size: $font-size-1,
+        width: $size-1,
+        height: $size-1,
+        padding: $space-1
+    ),
+    medium: (
+        font-size: $font-size-2,
+        width: $size-2,
+        height: $size-2,
+        padding: $space-2
+    ),
+    large: (
+        font-size: $font-size-3,
+        width: $size-3,
+        height: $size-3,
+        padding: $space-3
+    )
+);
+
+$badge-colors: (
+    primary: (
+        color: dv.$primary,
+    ),
+    secondary: (
+        color: dv.$secondary,
+    ),
+    error: (
+        color: dv.$danger,
+    ),
+    warning: (
+        color: dv.$warning,
+    ),
+    info: (
+        color: dv.$info,
+    ),
+    success: (
+        color: dv.$success,
+    )
+);
+
+$badge-overlaps: (
+    rectangular: (
+        border-radius: iv.$radius-small
+    ),
+    circular: (
+        border-radius: 50%
+    )
+);
+
+.#{iv.$class-prefix}badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    line-height: 1;
+    white-space: nowrap;
+    vertical-align: middle;
+    box-sizing: border-box;
+    user-select: none;
+    position: relative;
+
+    // Варианты
+    @each $variant, $props in $badge-variants {
+        &.#{iv.$class-prefix}#{$variant} {
+            background-color: map.get($props, background);
+            color: map.get($props, color);
+            border: map.get($props, border);
+            border-radius: map.get($props, border-radius);
+
+            @if map.has-key($props, size) {
+                width: map.get($props, size);
+                height: map.get($props, size);
+                min-width: map.get($props, size);
+                min-height: map.get($props, size);
+                padding: 0;
+                border-radius: 50%;
+            }
+        }
+    }
+
+    // Размеры
+    @each $size, $props in $badge-sizes {
+        &.#{iv.$class-prefix}#{$size} {
+            font-size: map.get($props, font-size);
+            width: map.get($props, width);
+            height: map.get($props, height);
+            padding: map.get($props, padding);
+        }
+    }
+
+    // Цвета
+    @each $color, $props in $badge-colors {
+        &.#{iv.$class-prefix}#{$color} {
+            background-color: map.get($props, background);
+            color: map.get($props, color);
+            border: map.get($props, border);
+        }
+    }
+
+    // Перекрытие (overlap)
+    @each $overlap, $props in $badge-overlaps {
+        &.#{iv.$class-prefix}#{$overlap} {
+            border-radius: map.get($props, border-radius);
+        }
+    }
+}
