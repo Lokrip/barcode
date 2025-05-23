@@ -1,5 +1,5 @@
 @use "../utilities/initial-variables.scss" as iv;
-@use "../utilities//derived-variables.scss" as dv;
+@use "../utilities/derived-variables.scss" as dv;
 @use "../utilities/css-variables.scss" as cv;
 
 #{iv.$variables-host} {
@@ -26,6 +26,7 @@
 
             // Status
             "primary": dv.$primary,
+            "secondary": dv.$secondary,
             "info": dv.$info,
             "success": dv.$success,
             "warning": dv.$warning,
