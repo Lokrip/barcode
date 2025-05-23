@@ -4,6 +4,20 @@ import styles from "./styles/avatar.module.scss";
 import { PolymorphicRef, BaseAvatarType } from "./model/avatar-types";
 import { AvatarRootGenericProps, AvatarProps } from "./model/avatar-props";
 
+function getFallbackContent(fallback: string): string {
+    const trimmed = fallback.trim();
+
+    if (/^\+\d+$/.test(trimmed)) return trimmed; // +N формат
+    if (/^[a-zA-Z]{1,2}$/.test(trimmed)) return trimmed.toUpperCase();
+
+    return trimmed
+        .split(" ")
+        .filter(Boolean)
+        .slice(0, 2)
+        .map((word) => word[0].toUpperCase())
+        .join("");
+}
+
 const AvatarBase = forwardRef(
     <C extends ElementType = "div">(
         { as, ownerState, className, ...props }: AvatarRootGenericProps<C>,
@@ -18,10 +32,12 @@ const AvatarBase = forwardRef(
                 className={className}
                 {...props}
                 onClick={onClick}
-                style={{ position: "relative" }}
+                style={{ position: "relative", ...(props.style || {}) }}
             >
                 {src ? (
                     <img src={src} alt={alt} onError={onError} className={styles.image} />
+                ) : typeof fallback === "string" ? (
+                    getFallbackContent(fallback)
                 ) : (
                     fallback ?? null
                 )}
