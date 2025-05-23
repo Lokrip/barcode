@@ -19,7 +19,6 @@ $avatar-variants: (
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    overflow: hidden;
     background-color: dv.$scheme-invert-ter;
     color: dv.$primary;
     font-weight: bold;
@@ -29,10 +28,17 @@ $avatar-variants: (
         height: 100%;
         object-fit: cover;
         display: block;
+        overflow: hidden;
     }
 
     @each $name, $radius in $avatar-variants {
-        &.#{iv.$class-prefix}#{$name} {
+        &.#{iv.$class-prefix}#{$name}{
+            border-radius: $radius;
+        }
+    }
+
+    @each $name, $radius in $avatar-variants {
+        &.#{iv.$class-prefix}#{$name} img{
             border-radius: $radius;
         }
     }

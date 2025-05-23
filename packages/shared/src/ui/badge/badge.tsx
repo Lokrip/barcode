@@ -17,7 +17,15 @@ export const BaseBadge = forwardRef(
             color = "primary",
             badgeContent,
             overlap = "circular",
+            anchorOrigin = { vertical: "top", horizontal: "right" }
         } = ownerState;
+
+        const anchorOriginClass = clsx({
+            [styles.anchorOriginTopRight]: anchorOrigin.vertical === "top" && anchorOrigin.horizontal === "right",
+            [styles.anchorOriginTopLeft]: anchorOrigin.vertical === "top" && anchorOrigin.horizontal === "left",
+            [styles.anchorOriginBottomRight]: anchorOrigin.vertical === "bottom" && anchorOrigin.horizontal === "right",
+            [styles.anchorOriginBottomLeft]: anchorOrigin.vertical === "bottom" && anchorOrigin.horizontal === "left",
+        });
 
         const classNameValid = correctClass(
             clsx(
@@ -26,6 +34,7 @@ export const BaseBadge = forwardRef(
                 styles[size],
                 styles[color],
                 styles[overlap],
+                anchorOriginClass,
                 className
             ),
             className!
@@ -64,12 +73,10 @@ export const Badge = forwardRef<HTMLElement, BadgeProps>(
 
         if (typeof badgeContent === "number") {
             if (badgeContent === 0 && !showZero) {
-                displayBadgeContent = null; // скрываем бейдж
+                displayBadgeContent = null;
             } else if (badgeContent >= max) {
                 displayBadgeContent = `${max - 1}+`;
             }
-        } else if (badgeContent == null) {
-            displayBadgeContent = null;
         }
 
         const ownerState: BaseBadgeType = {

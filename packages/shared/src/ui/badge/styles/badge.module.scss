@@ -89,6 +89,31 @@ $badge-overlaps: (
     )
 );
 
+.#{iv.$class-prefix}anchorOriginTopRight {
+    top: 15%;
+    right: 15%;
+    transform: translate(50%, -50%);
+    position: absolute;
+}
+.#{iv.$class-prefix}anchorOriginTopLeft {
+    top: 15%;
+    left: 15%;
+    transform: translate(-50%, -50%);
+    position: absolute;
+}
+.#{iv.$class-prefix}anchorOriginBottomRight {
+    bottom: 15%;
+    right: 15%;
+    transform: translate(50%, 50%);
+    position: absolute;
+}
+.#{iv.$class-prefix}anchorOriginBottomLeft {
+    bottom: 15%;
+    left: 15%;
+    transform: translate(-50%, 50%);
+    position: absolute;
+}
+
 .#{iv.$class-prefix}badge {
     display: inline-flex;
     align-items: center;
@@ -99,9 +124,9 @@ $badge-overlaps: (
     vertical-align: middle;
     box-sizing: border-box;
     user-select: none;
-    position: relative;
+    position: absolute;
+    z-index: 10;
 
-    // Варианты
     @each $variant, $props in $badge-variants {
         &.#{iv.$class-prefix}#{$variant} {
             background-color: map.get($props, background);
@@ -120,7 +145,6 @@ $badge-overlaps: (
         }
     }
 
-    // Размеры
     @each $size, $props in $badge-sizes {
         &.#{iv.$class-prefix}#{$size} {
             font-size: map.get($props, font-size);
@@ -130,7 +154,6 @@ $badge-overlaps: (
         }
     }
 
-    // Цвета
     @each $color, $props in $badge-colors {
         &.#{iv.$class-prefix}#{$color} {
             background-color: map.get($props, background);
@@ -139,7 +162,6 @@ $badge-overlaps: (
         }
     }
 
-    // Перекрытие (overlap)
     @each $overlap, $props in $badge-overlaps {
         &.#{iv.$class-prefix}#{$overlap} {
             border-radius: map.get($props, border-radius);

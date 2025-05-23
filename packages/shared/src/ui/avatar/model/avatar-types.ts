@@ -1,9 +1,15 @@
-import { ReactNode, SyntheticEvent, ElementType, ComponentPropsWithRef } from "react";
+import {ReactNode, SyntheticEvent, ElementType, ComponentPropsWithRef, JSX, Ref} from "react";
 
 export type AvatarVariant = "circle" | "square" | "rounded";
 export type AvatarSize = "small" | "medium" | "large" | number;
 
-export type PolymorphicRef<C extends ElementType> = ComponentPropsWithRef<C>["ref"];
+export type PolymorphicRef<C extends ElementType> = Ref<
+    C extends keyof JSX.IntrinsicElements
+        ? JSX.IntrinsicElements[C] extends { ref?: infer R }
+            ? R
+            : never
+        : ComponentPropsWithRef<C>["ref"]
+>;
 
 export interface BaseAvatarType {
     src?: string;
@@ -11,8 +17,8 @@ export interface BaseAvatarType {
     fallback?: ReactNode;
     variant?: AvatarVariant;
     size?: AvatarSize;
-    className?: string;
     onError?: (e: SyntheticEvent<HTMLImageElement, Event>) => void;
+    onClick?: () => void;
     children?: ReactNode;
-    onClick?: () => void
+    className?: string;
 }

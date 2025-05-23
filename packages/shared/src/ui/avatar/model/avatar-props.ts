@@ -1,6 +1,5 @@
-import { ElementType } from "react";
+import {ComponentPropsWithRef, ElementType} from "react";
 import { BaseAvatarType } from "./avatar-types";
-import { ClassNameType } from "../../../types/react.ts";
 
 export type AvatarRootGenericProps<C extends ElementType> = {
     as?: C;
@@ -8,8 +7,6 @@ export type AvatarRootGenericProps<C extends ElementType> = {
     className?: string;
 };
 
-export interface AvatarProps
-    extends ClassNameType,
-        BaseAvatarType {
-    component?: ElementType;
-}
+export type AvatarProps<C extends ElementType = "div"> = BaseAvatarType & {
+    component?: C;
+} & Omit<ComponentPropsWithRef<C>, keyof BaseAvatarType | "ref" | "className">;

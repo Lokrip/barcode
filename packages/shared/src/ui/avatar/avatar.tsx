@@ -1,88 +1,87 @@
-import {forwardRef} from "react";
-import {AvatarProps, AvatarRootGenericProps} from "./model/avatar-props";
+import { forwardRef, ElementType, ReactNode, JSX } from "react";
 import clsx from "clsx";
 import styles from "./styles/avatar.module.scss";
-import {BaseAvatarType, PolymorphicRef} from "./model/avatar-types";
-import {ElementType} from "react";
+import { PolymorphicRef, BaseAvatarType } from "./model/avatar-types";
+import { AvatarRootGenericProps, AvatarProps } from "./model/avatar-props";
 
-export const AvatarBase = forwardRef(
+const AvatarBase = forwardRef(
     <C extends ElementType = "div">(
-        {as, ownerState, className, ...props}: AvatarRootGenericProps<C>,
+        { as, ownerState, className, ...props }: AvatarRootGenericProps<C>,
         ref: PolymorphicRef<C>
     ) => {
-        const {
-            variant = "circle",
-            size = "medium",
-            src,
-            alt,
-            fallback,
-            onError,
-            onClick,
-            children,
-        } = ownerState;
-
+        const { src, alt, fallback, onError, onClick, children } = ownerState;
         const Component = as || "div";
 
-        const classes = clsx(
-            styles.avatar,
-            styles[variant],
-            styles[size],
-            className
-        );
-
         return (
-            <Component ref={ref} className={classes} {...props} onClick={onClick}>
+            <Component
+                ref={ref}
+                className={className}
+                {...props}
+                onClick={onClick}
+                style={{ position: "relative" }}
+            >
                 {src ? (
-                    <img
-                        src={src}
-                        alt={alt}
-                        onError={onError}
-                        className={styles.image}
-                    />
+                    <img src={src} alt={alt} onError={onError} className={styles.image} />
                 ) : (
-                    fallback ?? children
+                    fallback ?? null
                 )}
+                {children}
             </Component>
         );
     }
 );
 
-export const Avatar = forwardRef<HTMLElement, AvatarProps>(
-    (
-        {
-            component = "div",
-            variant = "circle",
-            size = "medium",
-            src,
-            alt,
-            fallback,
-            className,
-            onError,
-            children,
-            onClick,
-            ...props
-        },
-        ref
-    ) => {
-        const ownerState: BaseAvatarType = {
-            variant,
-            size,
-            src,
-            alt,
-            fallback,
-            onError,
-            onClick,
-            children,
-        };
+function AvatarInner<C extends ElementType = "div">(
+    {
+        component,
+        variant = "circle",
+        size = "medium",
+        src,
+        alt,
+        fallback,
+        className,
+        onError,
+        onClick,
+        children,
+        ...restProps
+    }: AvatarProps<C> & { children?: ReactNode },
+    ref?: PolymorphicRef<C>
+): JSX.Element {
+    const Component = component || "div";
 
-        return (
-            <AvatarBase
-                as={component}
-                ownerState={ownerState}
-                className={className}
-                ref={ref}
-                {...props}
-            />
-        );
-    }
-);
+    const classes = clsx(
+        styles.avatar,
+        styles[variant],
+        styles[size],
+        className
+    );
+
+    const ownerState: BaseAvatarType = {
+        src,
+        alt,
+        fallback,
+        variant,
+        size,
+        onError,
+        onClick,
+        children,
+    };
+
+    return (
+        <AvatarBase
+            as={Component}
+            ownerState={ownerState}
+            className={classes}
+            ref={ref}
+            {...restProps}
+        />
+    );
+}
+
+const Avatar = forwardRef(AvatarInner) as <
+    C extends ElementType = "div"
+>(
+    props: AvatarProps<C> & { children?: ReactNode; ref?: PolymorphicRef<C> }
+) => JSX.Element;
+
+export { Avatar, AvatarBase };
