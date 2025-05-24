@@ -1,4 +1,7 @@
 @use "initial-variables" as iv;
+@use "derived-variables.scss" as dv;
+
+$gradient-opacity: 0.13;
 
 @mixin spacing($property, $top: 0, $right: $top, $bottom: $top, $left: $right) {
     @if $property == margin or $property == padding {
@@ -58,102 +61,127 @@
     -webkit-overflow-scrolling: touch;
 }
 
+@mixin gradient-shadow(
+    $radius-shadow-bottom-left,
+    $radius-shadow-bottom-right,
+    $gradient-color: dv.$primary,
+    $opacity: $gradient-opacity
+) {
+    position: relative;
+    z-index: 1;
 
+    &::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 100%;
+        background: linear-gradient(
+            to bottom,
+            transparent 40%,
+            rgba($gradient-color, $opacity)
+        );
+        z-index: -1;
+        border-radius: 0px 0px $radius-shadow-bottom-left
+            $radius-shadow-bottom-right;
+    }
+}
 
 // Responsiveness
 
 @mixin from($device) {
-  @media screen and (min-width: $device) {
-    @content;
-  }
+    @media screen and (min-width: $device) {
+        @content;
+    }
 }
 
 @mixin until($device) {
-  @media screen and (max-width: ($device - 1px)) {
-    @content;
-  }
+    @media screen and (max-width: ($device - 1px)) {
+        @content;
+    }
 }
 
 @mixin between($from, $until) {
-  @media screen and (min-width: $from) and (max-width: ($until - 1px)) {
-    @content;
-  }
+    @media screen and (min-width: $from) and (max-width: ($until - 1px)) {
+        @content;
+    }
 }
 
 @mixin mobile {
-  @media screen and (max-width: (iv.$tablet - 1px)) {
-    @content;
-  }
+    @media screen and (max-width: (iv.$tablet - 1px)) {
+        @content;
+    }
 }
 
 @mixin tablet {
-  @media screen and (min-width: iv.$tablet), print {
-    @content;
-  }
+    @media screen and (min-width: iv.$tablet), print {
+        @content;
+    }
 }
 
 @mixin tablet-only {
-  @media screen and (min-width: iv.$tablet) and (max-width: (iv.$desktop - 1px)) {
-    @content;
-  }
+    @media screen and (min-width: iv.$tablet) and (max-width: (iv.$desktop - 1px)) {
+        @content;
+    }
 }
 
 @mixin touch {
-  @media screen and (max-width: (iv.$desktop - 1px)) {
-    @content;
-  }
+    @media screen and (max-width: (iv.$desktop - 1px)) {
+        @content;
+    }
 }
 
 @mixin desktop {
-  @media screen and (min-width: iv.$desktop) {
-    @content;
-  }
+    @media screen and (min-width: iv.$desktop) {
+        @content;
+    }
 }
 
 @mixin desktop-only {
-  @if iv.$widescreen-enabled {
-    @media screen and (min-width: iv.$desktop) and (max-width: (iv.$widescreen - 1px)) {
-      @content;
+    @if iv.$widescreen-enabled {
+        @media screen and (min-width: iv.$desktop) and (max-width: (iv.$widescreen - 1px)) {
+            @content;
+        }
     }
-  }
 }
 
 @mixin until-widescreen {
-  @if iv.$widescreen-enabled {
-    @media screen and (max-width: (iv.$widescreen - 1px)) {
-      @content;
+    @if iv.$widescreen-enabled {
+        @media screen and (max-width: (iv.$widescreen - 1px)) {
+            @content;
+        }
     }
-  }
 }
 
 @mixin widescreen {
-  @if iv.$widescreen-enabled {
-    @media screen and (min-width: iv.$widescreen) {
-      @content;
+    @if iv.$widescreen-enabled {
+        @media screen and (min-width: iv.$widescreen) {
+            @content;
+        }
     }
-  }
 }
 
 @mixin widescreen-only {
-  @if iv.$widescreen-enabled and iv.$fullhd-enabled {
-    @media screen and (min-width: iv.$widescreen) and (max-width: (iv.$fullhd - 1px)) {
-      @content;
+    @if iv.$widescreen-enabled and iv.$fullhd-enabled {
+        @media screen and (min-width: iv.$widescreen) and (max-width: (iv.$fullhd - 1px)) {
+            @content;
+        }
     }
-  }
 }
 
 @mixin until-fullhd {
-  @if iv.$fullhd-enabled {
-    @media screen and (max-width: (iv.$fullhd - 1px)) {
-      @content;
+    @if iv.$fullhd-enabled {
+        @media screen and (max-width: (iv.$fullhd - 1px)) {
+            @content;
+        }
     }
-  }
 }
 
 @mixin fullhd {
-  @if iv.$fullhd-enabled {
-    @media screen and (min-width: iv.$fullhd) {
-      @content;
+    @if iv.$fullhd-enabled {
+        @media screen and (min-width: iv.$fullhd) {
+            @content;
+        }
     }
-  }
 }
