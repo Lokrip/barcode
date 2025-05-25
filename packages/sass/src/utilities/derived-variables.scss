@@ -10,13 +10,28 @@ $scheme-invert-ter: iv.$black-ter !default;
 
 // Text colors
 $text: iv.$grey-dark !default;
-$text-invert: iv.$grey-light !default;
+$text-invert: iv.$white !default;
 $text-weak: iv.$grey !default;
 $text-strong: iv.$grey-darker !default;
 
 // Status colors
+$primary-lightest: iv.$blue-lightest !default;
+$primary-lighter: iv.$blue-lighter !default;
+$primary-light: iv.$blue-light !default;
 $primary: iv.$blue !default;
+$primary-dark: iv.$blue-dark !default;
+$primary-darker: iv.$blue-darker !default;
+$primary-darkest: iv.$blue-darkest !default;
+
+$secondary-lightest: iv.$turquoise-lightest !default;
+$secondary-lighter: iv.$turquoise-lighter !default;
+$secondary-light: iv.$turquoise-light !default;
 $secondary: iv.$turquoise !default;
+$secondary-dark: iv.$turquoise-dark !default;
+$secondary-darker: iv.$turquoise-darker !default;
+$secondary-darkest: iv.$turquoise-darkest !default;
+$secondary: iv.$turquoise !default;
+
 $info: iv.$cyan !default;
 $success: iv.$green !default;
 $warning: iv.$yellow !default;

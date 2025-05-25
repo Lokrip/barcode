@@ -6,29 +6,84 @@ $light-l: 90% !default;
 
 //Colors
 
-$black: hsl(221, 14%, 4%) !default;
-$black-bis: hsl(221, 14%, 9%) !default;
-$black-ter: hsl(221, 14%, 14%) !default;
+$cyan-lightest: hsl(198, 80%, 96%);
+$cyan-lighter: hsl(198, 85%, 88%);
+$cyan-light: hsl(198, 90%, 76%);
+$cyan: hsl(198, 100%, 65%);
+$cyan-dark: hsl(198, 85%, 50%);
+$cyan-darker: hsl(198, 80%, 38%);
+$cyan-darkest: hsl(198, 75%, 28%);
 
-$grey-darker: hsl(221, 14%, 21%) !default;
-$grey-dark: hsl(221, 14%, 29%) !default;
-$grey: hsl(221, 14%, 48%) !default;
-$grey-light: hsl(221, 14%, 71%) !default;
-$grey-lighter: hsl(221, 14%, 86%) !default;
-$grey-lightest: hsl(221, 14%, 93%) !default;
+$blue-lightest: hsl(222, 75%, 96%);
+$blue-lighter: hsl(222, 80%, 88%);
+$blue-light: hsl(222, 90%, 76%);
+$blue: hsl(222, 100%, 62%);
+$blue-dark: hsl(222, 75%, 50%);
+$blue-darker: hsl(222, 70%, 38%);
+$blue-darkest: hsl(222, 65%, 28%);
 
-$white-ter: hsl(221, 14%, 96%) !default;
-$white-bis: hsl(221, 14%, 98%) !default;
-$white: hsl(221, 14%, 100%) !default;
+$red-lightest: hsl(348, 75%, 96%);
+$red-lighter: hsl(348, 85%, 88%);
+$red-light: hsl(348, 90%, 76%);
+$red: hsl(348, 100%, 70%);
+$red-dark: hsl(348, 85%, 50%);
+$red-darker: hsl(348, 80%, 38%);
+$red-darkest: hsl(348, 75%, 28%);
 
-$orange: hsl(14, 100%, 53%) !default;
-$yellow: hsl(42, 100%, 53%) !default;
-$green: hsl(153, 53%, 53%) !default;
+$green-lightest: hsl(153, 40%, 96%);
+$green-lighter: hsl(153, 45%, 88%);
+$green-light: hsl(153, 50%, 76%);
+$green: hsl(153, 53%, 53%);
+$green-dark: hsl(153, 60%, 40%);
+$green-darker: hsl(153, 65%, 30%);
+$green-darkest: hsl(153, 70%, 20%);
+
+$turquoise-lightest: hsl(171, 100%, 95%) !default;
+$turquoise-lighter: hsl(171, 100%, 85%) !default;
+$turquoise-light: hsl(171, 100%, 75%) !default;
 $turquoise: hsl(171, 100%, 41%) !default;
-$cyan: hsl(198, 100%, 70%) !default;
-$blue: hsl(233, 100%, 63%) !default;
-$purple: hsl(271, 100%, 71%) !default;
-$red: hsl(348, 100%, 70%) !default;
+$turquoise-dark: hsl(171, 100%, 30%) !default;
+$turquoise-darker: hsl(171, 100%, 25%) !default;
+$turquoise-darkest: hsl(171, 100%, 20%) !default;
+
+$yellow-lightest: hsl(42, 100%, 95%);
+$yellow-lighter: hsl(42, 100%, 85%);
+$yellow-light: hsl(42, 100%, 70%);
+$yellow: hsl(42, 100%, 53%);
+$yellow-dark: hsl(42, 100%, 40%);
+$yellow-darker: hsl(42, 100%, 30%);
+$yellow-darkest: hsl(42, 100%, 20%);
+
+$purple-lightest: hsl(271, 100%, 95%);
+$purple-lighter: hsl(271, 100%, 85%);
+$purple-light: hsl(271, 100%, 75%);
+$purple: hsl(271, 100%, 71%);
+$purple-dark: hsl(271, 100%, 50%);
+$purple-darker: hsl(271, 100%, 40%);
+$purple-darkest: hsl(271, 100%, 30%);
+
+$orange-lightest: hsl(14, 100%, 95%);
+$orange-lighter: hsl(14, 100%, 85%);
+$orange-light: hsl(14, 100%, 70%);
+$orange: hsl(14, 100%, 53%);
+$orange-dark: hsl(14, 100%, 40%);
+$orange-darker: hsl(14, 100%, 30%);
+$orange-darkest: hsl(14, 100%, 20%);
+
+$white: hsl(0, 0%, 100%);
+$white-bis: hsl(0, 0%, 98%);
+$white-ter: hsl(0, 0%, 96%);
+
+$grey-lightest: hsl(221, 14%, 93%);
+$grey-lighter: hsl(221, 14%, 86%);
+$grey-light: hsl(221, 14%, 71%);
+$grey: hsl(221, 14%, 48%);
+$grey-dark: hsl(221, 14%, 29%);
+$grey-darker: hsl(221, 14%, 21%);
+
+$black-ter: hsl(221, 14%, 14%);
+$black-bis: hsl(221, 14%, 9%);
+$black: hsl(221, 14%, 4%);
 
 // Typography
 $family-sans-serif: "Roboto", "Inter", "Ubuntu", "Arial", sans-serif !default;
