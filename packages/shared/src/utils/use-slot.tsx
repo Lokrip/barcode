@@ -1,6 +1,6 @@
 "use client";
 
-import React, { ReactNode } from "react";
+import React, { PropsWithChildren } from "react";
 
 import type {
     SlotName,
@@ -17,9 +17,9 @@ const flattenChildren = (
     React.Children.forEach(children, (child) => {
         if (!React.isValidElement(child)) return;
 
-        const element = child as React.ReactElement<{
-            children: ReactNode
-        } & SlotChildrenProps>;
+        const element = child as React.ReactElement<
+            SlotChildrenProps & PropsWithChildren
+        >;
 
         if (
             child.type === React.Fragment ||
@@ -45,7 +45,6 @@ const flattenChildren = (
 const useSlot = (children: React.ReactNode) => {
     const childArray = flattenChildren(children);
 
-    console.log(childArray);
     const slots = childArray.reduce<SlotsMapWithDefault>(
         (result, child) => {
             if (!React.isValidElement(child)) {
