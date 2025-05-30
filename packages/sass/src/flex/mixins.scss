@@ -1,6 +1,8 @@
 // Dependencies
 @use "../utilities/mixins" as mx;
 
+@use "sass:map";
+
 // ============================================================================
 // Flexbox Direction + Alignment (Row)
 // ============================================================================
@@ -147,7 +149,9 @@ $flex-column-map: (
 ) !default;
 
 @mixin apply-flex($map, $key, $map-name: "map") {
-    $styles: map-get($map, $key);
+    display: flex;
+    
+    $styles: map.get($map, $key);
 
     @if $styles {
         @each $prop, $value in $styles {
