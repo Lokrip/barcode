@@ -1,4 +1,5 @@
 import { ComponentPropsWithRef, ElementType } from "react";
+import { Size } from "../../../types/props";
 
 export type SkeletonElements =
     | "div"
@@ -17,9 +18,7 @@ export type SkeletonAnimation = "pulse" | "wave";
 export type PolymorphicRef<C extends ElementType> =
     ComponentPropsWithRef<C>["ref"];
 
-export interface BaseSkeletonType {
-    width?: number;
-    height?: number;
+export interface BaseSkeletonType extends Size {
     variant?: SkeletonVariant;
     animation?: SkeletonAnimation;
     component?: SkeletonElements;
