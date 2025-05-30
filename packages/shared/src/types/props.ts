@@ -3,3 +3,8 @@ export interface GenericProps<T> {
 }
 
 export type WithSlot<T> = { slot?: keyof T } & T;
+
+export type Size = {
+    width?: number;
+    height?: number;
+};
