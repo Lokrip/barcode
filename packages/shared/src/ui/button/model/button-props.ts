@@ -1,5 +1,10 @@
-import { ReactNode, ElementType } from "react";
-import { ButtonVariant, ButtonSize, ButtonTypes } from "./button-types";
+import {
+    ReactNode,
+    ElementType,
+    ComponentPropsWithoutRef,
+    ComponentPropsWithRef,
+} from "react";
+import {ButtonColor, ButtonSize, ButtonTypes, ButtonVariant} from "./button-types";
 
 export interface ButtonOwnProps {
     variant?: ButtonVariant;
@@ -10,19 +15,23 @@ export interface ButtonOwnProps {
     loading?: boolean;
     loadingText?: string;
     disabled?: boolean;
-    onClick?: React.MouseEventHandler<any>;
     children?: ReactNode;
     className?: string;
     type?: ButtonTypes;
-    "data-testid"?: string;
+    color?: ButtonColor;
 }
 
-export type PolymorphicRef<C extends ElementType> = React.ComponentPropsWithRef<C>["ref"];
+export type PolymorphicRef<C extends ElementType> =
+    ComponentPropsWithRef<C>["ref"];
 
-export type PolymorphicProps<C extends ElementType, Props = {}> = Props & {
+export type PolymorphicProps<C extends ElementType, Props = object> = Props & {
     as?: C;
-} & Omit<React.ComponentPropsWithoutRef<C>, keyof Props | "as">;
+    ref?: PolymorphicRef<C>;
+} & Omit<ComponentPropsWithoutRef<C>, keyof Props | "as" | "ref">;
 
-export type ButtonProps<C extends ElementType = "button"> = PolymorphicProps<C, ButtonOwnProps>;
+export type ButtonProps<C extends ElementType = "button"> = PolymorphicProps<
+    C,
+    ButtonOwnProps
+>;
 
 export type ButtonOwnerState = ButtonOwnProps;

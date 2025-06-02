@@ -1,24 +1,52 @@
-@use "@packages/sass/src/utilities/derived-variables" as dv;
-@use "@packages/sass/src/utilities/initial-variables" as iv;
-@use "./animation.scss" as anim;
+@import "@packages/sass/src/utilities/derived-variables";
+@import "@packages/sass/src/utilities/initial-variables";
+@import "./animation.scss";
 
-$prefix: iv.$class-prefix;
+$prefix: $class-prefix;
+$transition-duration: 0.3s;
+
+$btn-padding: (
+    small: 4px 10px,
+    medium: 8px 16px,
+    large: 12px 20px
+);
+
+$btn-font-size: (
+    small: $size-small,
+    medium: $size-medium,
+    large: $size-large
+);
+
+$btn-border-radius: 6px;
+$btn-shadow-alpha-hover: 0.6;
+$btn-shadow-alpha-text-hover: 0.1;
+$btn-shadow-alpha-text-active: 0.2;
+
+$btn-colors: (
+    default: $scheme-main,
+    primary: $primary,
+    secondary: $secondary,
+    success: $success,
+    error: $danger,
+    warning: $warning,
+    info: $info
+);
 
 .#{$prefix}btn {
     display: inline-flex;
     align-items: center;
     justify-content: center;
     border: none;
-    border-radius: 6px;
-    font-weight: iv.$weight-medium;
-    font-family: dv.$family-primary;
+    border-radius: $btn-border-radius;
+    font-weight: $weight-medium;
+    font-family: $family-primary;
     cursor: pointer;
     user-select: none;
     transition:
-        background-color 0.2s ease,
-        color 0.2s ease,
-        box-shadow 0.3s ease,
-        text-shadow 0.3s ease;
+        background-color $transition-duration ease,
+        color $transition-duration ease,
+        box-shadow $transition-duration ease,
+        text-shadow $transition-duration ease;
     line-height: 1;
     gap: 8px;
     position: relative;
@@ -28,84 +56,134 @@ $prefix: iv.$class-prefix;
     }
 
     &.#{$prefix}contained {
-        background-color: dv.$scheme-invert;
-        color: dv.$primary;
+        background-color: $scheme-main;
 
-        &:hover:not(:disabled) {
-            background-color: dv.$scheme-invert-bis;
+        &:hover:not(.#{$prefix}disabled) {
+            background-color: $scheme-main-bis;
         }
 
-        &:active:not(:disabled) {
-            background-color: dv.$scheme-invert-ter;
-            @include anim.button-press-animation;
+        &:active:not(.#{$prefix}disabled) {
+            background-color: $scheme-main-ter;
+            @include button-press-animation;
         }
     }
 
     &.#{$prefix}outlined {
         background-color: transparent;
-        color: dv.$primary;
-        border: 1px solid dv.$primary;
+        border: 1px solid currentColor;
 
-        &:hover:not(:disabled) {
-            box-shadow: 0 0 4px rgba(dv.$primary, 0.6);
-            text-shadow: 0 0 2px rgba(dv.$primary, 0.6);
-        }
-
-        &:active:not(:disabled) {
+        &:active:not(.#{$prefix}disabled) {
             box-shadow: none;
             text-shadow: none;
-            @include anim.button-press-animation;
+            @include button-press-animation;
         }
     }
 
     &.#{$prefix}text {
         background-color: transparent;
-        color: dv.$primary;
         border: none;
 
-        &:hover:not(:disabled) {
-            background-color: dv.$scheme-invert-ter;
+        &:hover:not(.#{$prefix}disabled) {
+            background-color: $scheme-main-ter;
         }
 
-        &:active:not(:disabled) {
-            background-color: dv.$scheme-invert-bis;
-            @include anim.button-press-animation;
+        &:active:not(.#{$prefix}disabled) {
+            background-color: $scheme-main-bis;
+            @include button-press-animation;
         }
     }
 
-    &.#{$prefix}small {
-        padding: 4px 10px;
-        font-size: dv.$size-small;
+    @each $colorName, $colorValue in $btn-colors {
+        &.#{$colorName} {
+            color: $colorValue;
+
+            &.#{$prefix}outlined {
+                border-color: $colorValue;
+                color: $colorValue;
+
+                &:hover:not(.#{$prefix}disabled) {
+                    box-shadow: 0 0 4px rgba($colorValue, $btn-shadow-alpha-hover);
+                    text-shadow: 0 0 2px rgba($colorValue, $btn-shadow-alpha-hover);
+                }
+            }
+
+            &.#{$prefix}contained {
+                background-color: $colorValue;
+                color: $scheme-main;
+
+                &:hover:not(.#{$prefix}disabled) {
+                    background-color: lighten($colorValue, 5%);
+                }
+
+                &:active:not(.#{$prefix}disabled) {
+                    background-color: darken($colorValue, 10%);
+                    @include button-press-animation;
+                }
+            }
+
+            &.#{$prefix}text {
+                color: $colorValue;
+
+                &:hover:not(.#{$prefix}disabled) {
+                    background-color: rgba($colorValue, $btn-shadow-alpha-text-hover);
+                }
+
+                &:active:not(.#{$prefix}disabled) {
+                    background-color: rgba($colorValue, $btn-shadow-alpha-text-active);
+                    @include button-press-animation;
+                }
+            }
+        }
     }
 
-    &.#{$prefix}medium {
-        padding: 8px 16px;
-        font-size: dv.$size-medium;
-    }
-
-    &.#{$prefix}large {
-        padding: 12px 20px;
-        font-size: dv.$size-large;
-    }
-
-    &:disabled {
-        background-color: dv.$scheme-invert-ter;
-        color: dv.$text-weak;
+    &.#{$prefix}disabled {
+        background-color: $scheme-main-ter;
+        color: $text-weak;
+        border-color: transparent;
         cursor: not-allowed;
+        pointer-events: none;
+        box-shadow: none;
+        text-shadow: none;
+    }
+
+    @each $colorName, $colorValue in $btn-colors {
+        &.#{$colorName}.#{$prefix}disabled {
+            background-color: $scheme-main-ter;
+            color: $text-weak;
+            border-color: $scheme-main-ter;
+        }
+    }
+
+    @each $sizeName, $padding in $btn-padding {
+        &.#{$sizeName} {
+            padding: $padding;
+            font-size: map-get($btn-font-size, $sizeName);
+
+            &.#{$prefix}outlined {
+                $vertical: nth($padding, 1);
+                $horizontal: nth($padding, 2);
+                padding: ($vertical - 1px) ($horizontal - 1px);
+            }
+        }
+    }
+
+    .#{$prefix}label {
+        visibility: visible;
+        opacity: 1;
+        transition: opacity $transition-duration ease;
     }
 
     &.#{$prefix}loading {
         pointer-events: none;
-        padding-left: 32px;
+
+        .#{$prefix}label {
+            opacity: 0;
+        }
 
         &::before {
-            @include anim.loading-spinner(16px, currentColor);
+            @include loading-spinner(16px, currentColor);
             position: absolute;
-            left: 12px;
-            top: 50%;
-            transform: translateY(-50%);
             z-index: 1;
-            content: "";
         }
     }
 
