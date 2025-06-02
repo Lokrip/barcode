@@ -6,6 +6,7 @@ import {
     Ref
 } from "react";
 import {ButtonColor, ButtonSize, ButtonTypes, ButtonVariant} from "./button-types";
+import {WithRef} from "../../../types/react.ts";
 
 export interface ButtonOwnProps {
     variant?: ButtonVariant;
@@ -26,5 +27,6 @@ export interface ButtonOwnProps {
 
 export type ButtonProps<C extends ElementType = "button"> =
     ButtonOwnProps &
+    WithRef<HTMLElement> &
     ComponentPropsWithRef<C> &
     Omit<ComponentPropsWithoutRef<C>, keyof ButtonOwnProps | "as">;
