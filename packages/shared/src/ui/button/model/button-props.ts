@@ -13,7 +13,6 @@ export interface ButtonOwnProps {
     startIcon?: ReactNode;
     endIcon?: ReactNode;
     loading?: boolean;
-    loadingText?: string;
     disabled?: boolean;
     children?: ReactNode;
     className?: string;

@@ -15,7 +15,6 @@ export const Button = <C extends ElementType = "button">({
     startIcon,
     endIcon,
     loading = false,
-    loadingText,
     children,
     color = "primary",
     ref,
