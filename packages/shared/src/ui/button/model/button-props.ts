@@ -3,6 +3,7 @@ import {
     ElementType,
     ComponentPropsWithoutRef,
     ComponentPropsWithRef,
+    Ref
 } from "react";
 import {ButtonColor, ButtonSize, ButtonTypes, ButtonVariant} from "./button-types";
 
@@ -13,24 +14,17 @@ export interface ButtonOwnProps {
     startIcon?: ReactNode;
     endIcon?: ReactNode;
     loading?: boolean;
+    iconOnly?: boolean;
     disabled?: boolean;
     children?: ReactNode;
     className?: string;
     type?: ButtonTypes;
     color?: ButtonColor;
+    as?: string;
+    ref?: Ref<HTMLElement>;
 }
 
-export type PolymorphicRef<C extends ElementType> =
-    ComponentPropsWithRef<C>["ref"];
-
-export type PolymorphicProps<C extends ElementType, Props = object> = Props & {
-    as?: C;
-    ref?: PolymorphicRef<C>;
-} & Omit<ComponentPropsWithoutRef<C>, keyof Props | "as" | "ref">;
-
-export type ButtonProps<C extends ElementType = "button"> = PolymorphicProps<
-    C,
-    ButtonOwnProps
->;
-
-export type ButtonOwnerState = ButtonOwnProps;
+export type ButtonProps<C extends ElementType = "button"> =
+    ButtonOwnProps &
+    ComponentPropsWithRef<C> &
+    Omit<ComponentPropsWithoutRef<C>, keyof ButtonOwnProps | "as">;

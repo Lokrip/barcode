@@ -50,6 +50,7 @@ $btn-colors: (
     line-height: 1;
     gap: 8px;
     position: relative;
+    text-decoration: none;
 
     &.#{$prefix}fullWidth {
         width: 100%;
@@ -152,6 +153,12 @@ $btn-colors: (
             color: $text-weak;
             border-color: $scheme-main-ter;
         }
+
+        &.#{$colorName}:focus-visible {
+            box-shadow: 0 0 0 3px rgba($colorValue, 0.4);
+            outline: none;
+            transition: box-shadow $transition-duration ease;
+        }
     }
 
     @each $sizeName, $padding in $btn-padding {
@@ -198,6 +205,22 @@ $btn-colors: (
 
         &:last-child {
             margin-left: 4px;
+        }
+    }
+
+    &.#{$prefix}iconOnly {
+        aspect-ratio: 1;
+
+        @each $sizeName, $padding in $btn-padding {
+            &.#{$sizeName} {
+                $vertical: nth($padding, 1);
+                $horizontal: nth($padding, 2);
+                padding: $vertical;
+            }
+        }
+
+        .#{$prefix}label {
+            display: none;
         }
     }
 }

@@ -15,6 +15,7 @@ export const Button = <C extends ElementType = "button">({
     startIcon,
     endIcon,
     loading = false,
+    iconOnly = false,
     children,
     color = "primary",
     ref,
@@ -22,6 +23,7 @@ export const Button = <C extends ElementType = "button">({
 }: ButtonProps<C>) => {
     const Component = as || "button";
     const isButton = Component === "button";
+    const isAnchor = Component === "a";
 
     const classes = clsx(
         styles.btn,
@@ -32,9 +34,17 @@ export const Button = <C extends ElementType = "button">({
             [styles.fullWidth]: fullWidth,
             [styles.loading]: loading,
             [styles.disabled]: disabled,
+            [styles.iconOnly]: iconOnly,
         },
         className
     );
+
+    const handleKeyDown = (event: KeyboardEvent) => {
+        if ((event.key === "Enter" || event.key === " ") && !disabled && !loading) {
+            event.preventDefault();
+            onClick?.(event);
+        }
+    };
 
     return (
         <Component
@@ -42,15 +52,25 @@ export const Button = <C extends ElementType = "button">({
             type={isButton ? type || "button" : undefined}
             className={classes}
             disabled={isButton ? disabled || loading : undefined}
-            onClick={onClick}
+            {...(isAnchor ? { href: (restProps).href } : {})}
+            onClick={!disabled && !loading ? onClick : undefined}
             aria-busy={loading}
+            aria-label={iconOnly && typeof children === "string" ? children : undefined}
             role={!isButton ? "button" : undefined}
-            tabIndex={!isButton ? 0 : undefined}
+            tabIndex={!isButton ? (disabled || loading ? -1 : 0) : undefined}
+            onKeyDown={!isButton ? handleKeyDown : undefined}
             {...restProps}
         >
-            {startIcon && !loading && <span className={styles.icon}>{startIcon}</span>}
-            <span className={styles.label}>{children}</span>
-            {endIcon && !loading && <span className={styles.icon}>{endIcon}</span>}
+            {iconOnly ? (
+                children
+            ) : (
+                <>
+                    {startIcon && !loading && <span className={styles.icon}>{startIcon}</span>}
+                    <span className={styles.label}>{children}</span>
+                    {endIcon && !loading && <span className={styles.icon}>{endIcon}</span>}
+                </>
+            )}
+
         </Component>
     );
 };
