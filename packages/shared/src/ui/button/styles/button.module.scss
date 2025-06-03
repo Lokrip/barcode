@@ -1,8 +1,11 @@
-@import "@packages/sass/src/utilities/derived-variables";
-@import "@packages/sass/src/utilities/initial-variables";
-@import "./animation.scss";
+@use "@packages/sass/src/utilities/derived-variables" as dv;
+@use "@packages/sass/src/utilities/initial-variables" as iv;
+@use "./animation.scss" as anim;
+@use "sass:list";
+@use "sass:color";
+@use "sass:map";
 
-$prefix: $class-prefix;
+$prefix: iv.$class-prefix;
 $transition-duration: 0.3s;
 
 $btn-padding: (
@@ -12,9 +15,9 @@ $btn-padding: (
 );
 
 $btn-font-size: (
-    small: $size-small,
-    medium: $size-medium,
-    large: $size-large
+    small: dv.$size-small,
+    medium: dv.$size-medium,
+    large: dv.$size-large
 );
 
 $btn-border-radius: 6px;
@@ -23,13 +26,13 @@ $btn-shadow-alpha-text-hover: 0.1;
 $btn-shadow-alpha-text-active: 0.2;
 
 $btn-colors: (
-    default: $scheme-main,
-    primary: $primary,
-    secondary: $secondary,
-    success: $success,
-    error: $danger,
-    warning: $warning,
-    info: $info
+    default: dv.$scheme-main,
+    primary: dv.$primary,
+    secondary: dv.$secondary,
+    success: dv.$success,
+    error: dv.$danger,
+    warning: dv.$warning,
+    info: dv.$info
 );
 
 .#{$prefix}btn {
@@ -38,8 +41,8 @@ $btn-colors: (
     justify-content: center;
     border: none;
     border-radius: $btn-border-radius;
-    font-weight: $weight-medium;
-    font-family: $family-primary;
+    font-weight: iv.$weight-medium;
+    font-family: dv.$family-primary;
     cursor: pointer;
     user-select: none;
     transition:
@@ -57,15 +60,15 @@ $btn-colors: (
     }
 
     &.#{$prefix}contained {
-        background-color: $scheme-main;
+        background-color: dv.$scheme-main;
 
         &:hover:not(.#{$prefix}disabled) {
-            background-color: $scheme-main-bis;
+            background-color: dv.$scheme-main-bis;
         }
 
         &:active:not(.#{$prefix}disabled) {
-            background-color: $scheme-main-ter;
-            @include button-press-animation;
+            background-color: dv.$scheme-main-ter;
+            @include anim.button-press-animation;
         }
     }
 
@@ -76,7 +79,7 @@ $btn-colors: (
         &:active:not(.#{$prefix}disabled) {
             box-shadow: none;
             text-shadow: none;
-            @include button-press-animation;
+            @include anim.button-press-animation;
         }
     }
 
@@ -85,12 +88,12 @@ $btn-colors: (
         border: none;
 
         &:hover:not(.#{$prefix}disabled) {
-            background-color: $scheme-main-ter;
+            background-color: dv.$scheme-main-ter;
         }
 
         &:active:not(.#{$prefix}disabled) {
-            background-color: $scheme-main-bis;
-            @include button-press-animation;
+            background-color: dv.$scheme-main-bis;
+            @include anim.button-press-animation;
         }
     }
 
@@ -110,15 +113,15 @@ $btn-colors: (
 
             &.#{$prefix}contained {
                 background-color: $colorValue;
-                color: $scheme-main;
+                color: dv.$scheme-main;
 
                 &:hover:not(.#{$prefix}disabled) {
-                    background-color: lighten($colorValue, 5%);
+                    background-color: color.adjust($colorValue, $lightness: 5%);
                 }
 
                 &:active:not(.#{$prefix}disabled) {
-                    background-color: darken($colorValue, 10%);
-                    @include button-press-animation;
+                    background-color: color.adjust($colorValue, $lightness: -10%);
+                    @include anim.button-press-animation;
                 }
             }
 
@@ -131,15 +134,15 @@ $btn-colors: (
 
                 &:active:not(.#{$prefix}disabled) {
                     background-color: rgba($colorValue, $btn-shadow-alpha-text-active);
-                    @include button-press-animation;
+                    @include anim.button-press-animation;
                 }
             }
         }
     }
 
     &.#{$prefix}disabled {
-        background-color: $scheme-main-ter;
-        color: $text-weak;
+        background-color: dv.$scheme-main-ter;
+        color: dv.$text-weak;
         border-color: transparent;
         cursor: not-allowed;
         pointer-events: none;
@@ -149,9 +152,9 @@ $btn-colors: (
 
     @each $colorName, $colorValue in $btn-colors {
         &.#{$colorName}.#{$prefix}disabled {
-            background-color: $scheme-main-ter;
-            color: $text-weak;
-            border-color: $scheme-main-ter;
+            background-color: dv.$scheme-main-ter;
+            color: dv.$text-weak;
+            border-color: dv.$scheme-main-ter;
         }
 
         &.#{$colorName}:focus-visible {
@@ -164,11 +167,11 @@ $btn-colors: (
     @each $sizeName, $padding in $btn-padding {
         &.#{$sizeName} {
             padding: $padding;
-            font-size: map-get($btn-font-size, $sizeName);
+            font-size: map.get($btn-font-size, $sizeName);
 
             &.#{$prefix}outlined {
-                $vertical: nth($padding, 1);
-                $horizontal: nth($padding, 2);
+                $vertical: list.nth($padding, 1);
+                $horizontal: list.nth($padding, 2);
                 padding: ($vertical - 1px) ($horizontal - 1px);
             }
         }
@@ -188,7 +191,7 @@ $btn-colors: (
         }
 
         &::before {
-            @include loading-spinner(16px, currentColor);
+            @include anim.loading-spinner(16px, currentColor);
             position: absolute;
             z-index: 1;
         }
@@ -213,8 +216,7 @@ $btn-colors: (
 
         @each $sizeName, $padding in $btn-padding {
             &.#{$sizeName} {
-                $vertical: nth($padding, 1);
-                $horizontal: nth($padding, 2);
+                $vertical: list.nth($padding, 1);
                 padding: $vertical;
             }
         }
