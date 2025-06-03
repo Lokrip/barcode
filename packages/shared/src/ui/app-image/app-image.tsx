@@ -1,5 +1,7 @@
-import { FC, useState } from "react";
-import { AppImageProps } from "./app-image-props";
+"use client";
+
+import { FC, useEffect, useState } from "react";
+import { AppImageProps } from "./model/app-image-props";
 import Image from "next/image";
 
 import styles from "./app-image.module.scss";
@@ -9,11 +11,22 @@ export const AppImage: FC<AppImageProps> = ({
     alt,
     className,
     skeleton,
-    width,
-    height,
+    width = 100,
+    height = 100,
+    ref,
     ...props
 }) => {
     const [isLoading, setIsLoading] = useState(true);
+
+    useEffect(() => {
+        const timeout = setTimeout(() => {
+            setIsLoading(false);
+        }, 3000);
+
+        return () => {
+            clearTimeout(timeout);
+        };
+    }, []);
 
     const skeletonProps =
         skeleton.height && skeleton.width
@@ -32,18 +45,18 @@ export const AppImage: FC<AppImageProps> = ({
 
     return (
         <div className={styles.image}>
-            <Image
-                {...props}
-                alt={alt || "Image"}
-                onLoadingComplete={() => setIsLoading(false)}
-                className={className}
-                width={width}
-                height={height}
-            />
-            {isLoading && (
-                <div className={styles.skeletonWrapper}>
-                    <Skeleton {...skeletonProps} />
-                </div>
+            {isLoading ? (
+                <Skeleton {...skeletonProps} />
+            ) : (
+                <Image
+                    {...props}
+                    alt={alt || "Image"}
+                    onLoadingComplete={() => setIsLoading(false)}
+                    className={className}
+                    width={width}
+                    height={height}
+                    ref={ref}
+                />
             )}
         </div>
     );
