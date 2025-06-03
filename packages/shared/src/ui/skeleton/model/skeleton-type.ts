@@ -9,7 +9,6 @@ export type SkeletonElements =
     | "h2"
     | "h3"
     | "li"
-    | "img"
     | "button";
 
 export type SkeletonVariant = "circular" | "rectangular" | "rounded" | "text";
