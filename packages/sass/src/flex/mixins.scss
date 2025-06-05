@@ -50,6 +50,30 @@
     @include mx.flex(column, center, center, nowrap);
 }
 
+@mixin flex-column-center-start {
+    @include mx.flex(column, center, flex-start, nowrap);
+}
+
+@mixin flex-column-start-center {
+    @include mx.flex(column, flex-start, center, nowrap);
+}
+
+@mixin flex-column-end-center {
+    @include mx.flex(column, flex-end, center, nowrap);
+}
+
+@mixin flex-row-center-start {
+    @include flex(row, center, flex-start);
+}
+
+@mixin flex-row-start-center {
+    @include flex(row, flex-start, center);
+}
+
+@mixin flex-row-end-center {
+    @include flex(row, flex-end, center);
+}
+
 @mixin flex-column-end {
     @include mx.flex(column, flex-end, end, nowrap);
 }
@@ -150,7 +174,7 @@ $flex-column-map: (
 
 @mixin apply-flex($map, $key, $map-name: "map") {
     display: flex;
-    
+
     $styles: map.get($map, $key);
 
     @if $styles {
