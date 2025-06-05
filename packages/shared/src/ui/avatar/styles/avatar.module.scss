@@ -14,13 +14,27 @@ $avatar-variants: (
     rounded: iv.$radius-medium,
 );
 
-.group {
+$avatar-spacing-default: -24px;
+
+.#{iv.$class-prefix}group {
     display: flex;
     align-items: center;
+    position: relative;
+
+    --spacing: #{$avatar-spacing-default};
 
     .#{iv.$class-prefix}avatar {
         border: 2px solid #000;
         box-sizing: content-box;
+    }
+}
+
+.#{iv.$class-prefix}avatarWrapper {
+    position: relative;
+    display: inline-block;
+
+    &:not(:first-child) {
+        margin-left: var(--spacing);
     }
 }
 
@@ -42,13 +56,11 @@ $avatar-variants: (
     }
 
     @each $name, $radius in $avatar-variants {
-        &.#{iv.$class-prefix}#{$name}{
+        &.#{iv.$class-prefix}#{$name} {
             border-radius: $radius;
         }
-    }
 
-    @each $name, $radius in $avatar-variants {
-        &.#{iv.$class-prefix}#{$name} img{
+        &.#{iv.$class-prefix}#{$name} img {
             border-radius: $radius;
         }
     }
