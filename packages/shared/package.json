@@ -41,12 +41,14 @@
         "vite": "^6.3.1"
     },
     "dependencies": {
-        "@packages/shared": "file:",
         "@packages/sass": "1.0.0",
+        "@packages/shared": "file:",
         "clsx": "^2.1.1",
         "lucide-react": "^0.503.0",
+        "next": "^15.3.3",
         "react": "^19.0.0",
         "react-dom": "^19.0.0",
-        "sass": "^1.88.0"
+        "sass": "^1.88.0",
+        "winston": "^3.17.0"
     }
 }
