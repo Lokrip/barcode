@@ -1,6 +1,8 @@
 // Dependencies
 @use "../utilities/mixins" as mx;
 
+@use "sass:map";
+
 // ============================================================================
 // Flexbox Direction + Alignment (Row)
 // ============================================================================
@@ -46,6 +48,30 @@
 /// Flex column with items centered
 @mixin flex-column-center {
     @include mx.flex(column, center, center, nowrap);
+}
+
+@mixin flex-column-center-start {
+    @include mx.flex(column, center, flex-start, nowrap);
+}
+
+@mixin flex-column-start-center {
+    @include mx.flex(column, flex-start, center, nowrap);
+}
+
+@mixin flex-column-end-center {
+    @include mx.flex(column, flex-end, center, nowrap);
+}
+
+@mixin flex-row-center-start {
+    @include flex(row, center, flex-start);
+}
+
+@mixin flex-row-start-center {
+    @include flex(row, flex-start, center);
+}
+
+@mixin flex-row-end-center {
+    @include flex(row, flex-end, center);
 }
 
 @mixin flex-column-end {
@@ -147,7 +173,9 @@ $flex-column-map: (
 ) !default;
 
 @mixin apply-flex($map, $key, $map-name: "map") {
-    $styles: map-get($map, $key);
+    display: flex;
+
+    $styles: map.get($map, $key);
 
     @if $styles {
         @each $prop, $value in $styles {

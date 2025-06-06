@@ -11,8 +11,6 @@ $flex-gaps: (
     start: math.div(iv.$gap, 4),
     end: math.div(iv.$gap, 4),
     between: math.div(iv.$gap, 2),
-    around: math.div(iv.$gap, 2),
-    evenly: math.div(iv.$gap, 2),
 );
 
 @function get-flex-gap($type) {
@@ -30,3 +28,4 @@ $flex-gaps: (
         gap: get-flex-gap($key);
     }
 }
+

@@ -1,40 +1,50 @@
-import { ElementType, forwardRef, JSX } from "react";
-import { ButtonProps, PolymorphicRef } from "./model/button-props";
+import { ElementType } from "react";
+import { ButtonProps } from "./model/button-props";
 import clsx from "clsx";
 import styles from "./styles/button.module.scss";
 
-const ButtonBase = <C extends ElementType = "button">(
-    {
-        as,
-        variant = "contained",
-        size = "medium",
-        type,
-        className = "",
-        disabled = false,
-        onClick,
-        fullWidth = false,
-        startIcon,
-        endIcon,
-        loading = false,
-        loadingText,
-        children,
-        ...restProps
-    }: ButtonProps<C>,
-    ref: PolymorphicRef<C>
-) => {
+export const Button = <C extends ElementType = "button">({
+    as,
+    variant = "contained",
+    size = "medium",
+    type,
+    className = "",
+    disabled = false,
+    onClick,
+    fullWidth = false,
+    startIcon,
+    endIcon,
+    loading = false,
+    iconOnly = false,
+    children,
+    color = "primary",
+    ref,
+    ...restProps
+}: ButtonProps<C>) => {
     const Component = as || "button";
     const isButton = Component === "button";
+    const isAnchor = Component === "a";
 
     const classes = clsx(
         styles.btn,
         styles[variant],
         styles[size],
+        styles[color],
         {
             [styles.fullWidth]: fullWidth,
             [styles.loading]: loading,
+            [styles.disabled]: disabled,
+            [styles.iconOnly]: iconOnly,
         },
         className
     );
+
+    const handleKeyDown = (event: KeyboardEvent) => {
+        if ((event.key === "Enter" || event.key === " ") && !disabled && !loading) {
+            event.preventDefault();
+            onClick?.(event);
+        }
+    };
 
     return (
         <Component
@@ -42,25 +52,25 @@ const ButtonBase = <C extends ElementType = "button">(
             type={isButton ? type || "button" : undefined}
             className={classes}
             disabled={isButton ? disabled || loading : undefined}
-            onClick={onClick}
+            {...(isAnchor ? { href: (restProps).href } : {})}
+            onClick={!disabled && !loading ? onClick : undefined}
             aria-busy={loading}
+            aria-label={iconOnly && typeof children === "string" ? children : undefined}
             role={!isButton ? "button" : undefined}
-            tabIndex={!isButton ? 0 : undefined}
+            tabIndex={!isButton ? (disabled || loading ? -1 : 0) : undefined}
+            onKeyDown={!isButton ? handleKeyDown : undefined}
             {...restProps}
         >
-            {startIcon && !loading && (
-                <span className={styles.icon}>{startIcon}</span>
+            {iconOnly ? (
+                children
+            ) : (
+                <>
+                    {startIcon && !loading && <span className={styles.icon}>{startIcon}</span>}
+                    <span className={styles.label}>{children}</span>
+                    {endIcon && !loading && <span className={styles.icon}>{endIcon}</span>}
+                </>
             )}
-            {loading ? loadingText || "Loading..." : children}
-            {endIcon && !loading && (
-                <span className={styles.icon}>{endIcon}</span>
-            )}
+
         </Component>
     );
 };
-
-export const Button = forwardRef(ButtonBase as any) as unknown as <
-    C extends ElementType = "button"
->(
-    props: ButtonProps<C> & { ref?: PolymorphicRef<C> }
-) => JSX.Element;

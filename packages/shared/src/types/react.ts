@@ -4,6 +4,6 @@ export interface ClassNameType {
     className?: string;
 }
 
-export interface WithRef {
-    ref?: Ref<HTMLDivElement>;
+export interface WithRef<T> {
+    ref?: Ref<T>;
 }
