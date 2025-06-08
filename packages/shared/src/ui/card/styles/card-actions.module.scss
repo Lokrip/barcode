@@ -1,0 +1,6 @@
+@use "@packages/sass/src/utilities/initial-variables" as iv;
+@use "@packages/sass/src/flex/mixins" as fmx;
+
+.#{iv.$class-prefix}actions {
+    @include fmx.flex-column-center-start();
+}

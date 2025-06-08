@@ -1,0 +1,23 @@
+@use "@packages/sass/src/utilities/initial-variables" as iv;
+@use "@packages/sass/src/utilities/derived-variables" as dv;
+@use "@packages/sass/src/flex/mixins" as fmx;
+
+@use "./card-derived-variables" as cdv;
+
+.#{iv.$class-prefix}media {
+    @include fmx.flex-column-center-start();
+
+    border-radius: iv.$radius-medium;
+    width: 100%;
+
+    margin: 0px 0px cdv.$card-margin 0px;
+}
+
+.#{iv.$class-prefix}image {
+    object-fit: cover;
+    max-height: 200px;
+}
+.#{iv.$class-prefix}video {
+}
+.#{iv.$class-prefix}audio {
+}

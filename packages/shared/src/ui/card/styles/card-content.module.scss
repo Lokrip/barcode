@@ -1,0 +1,7 @@
+@use "@packages/sass/src/utilities/initial-variables" as iv;
+
+@use "./card-derived-variables" as cdv;
+
+.#{iv.$class-prefix}content {
+    margin: 0px 0px cdv.$card-margin 0px;
+}

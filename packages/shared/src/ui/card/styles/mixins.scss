@@ -1,0 +1,6 @@
+@use "@packages/sass/src/utilities/derived-variables" as dv;
+
+@mixin apply-border-style($border-color, $bg-color) {
+    border: 1px solid $border-color;
+    background-color: $bg-color;
+}

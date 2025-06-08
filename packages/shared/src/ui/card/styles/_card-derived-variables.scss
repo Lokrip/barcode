@@ -1,0 +1,10 @@
+@use "./card-initial-variables" as civ;
+
+$card-padding: civ.$card-padding !default;
+$card-padding-sm: civ.$card-padding-small !default;
+$card-padding-lg: civ.$card-padding-large !default;
+
+$card-margin: civ.$card-margin !default;
+$card-margin-sm: civ.$card-margin-small !default;
+$card-margin-lg: civ.$card-margin-large !default;
+

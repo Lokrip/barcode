@@ -1,0 +1,61 @@
+@use "@packages/sass/src/utilities/initial-variables" as iv;
+@use "@packages/sass/src/utilities/derived-variables" as dv;
+@use "@packages/sass/src/utilities/mixins" as m;
+
+@use "./card-initial-variables" as civ;
+@use "./card-derived-variables" as cdv;
+@use "./mixins.scss" as cm;
+
+@use "sass:map";
+@use "sass:list";
+
+.#{iv.$class-prefix}card {
+    border-radius: civ.$card-radius-large;
+    width: 14.5rem;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    padding: cdv.$card-padding;
+
+    cursor: default;
+
+    &.#{iv.$class-prefix}fixedSize {
+        width: 15.5rem;
+        height: 16.75rem;
+    }
+
+    @each $variants, $properties in civ.$card-variants {
+        &.#{iv.$class-prefix}#{$variants} {
+            @if map.get($properties, use-mixin) == true {
+                @include cm.apply-border-style(
+                    map.get($properties, mixin-border-color),
+                    map.get($properties, mixin-bg-color)
+                );
+            }
+
+            @each $prop, $val in $properties {
+                //тут мы проверяем если $prop будет в этом списке (use-mixin, mixin-border-color, mixin-bg-color)
+                //то он должен выдать index позицию этого элемента а если его нету то null
+                @if list.index(
+                        (use-mixin, mixin-border-color, mixin-bg-color),
+                        $prop
+                    ) ==
+                    null
+                {
+                    #{$prop}: #{$val};
+                }
+            }
+
+            @if $variants == "glass" {
+                position: relative;
+
+                @include m.gradient-shadow(
+                    civ.$card-radius-large,
+                    civ.$card-radius-large
+                );
+            }
+        }
+    }
+}
