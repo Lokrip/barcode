@@ -14,31 +14,31 @@ $card-margin-small: 1rem !default;
 $card-margin-large: 2rem !default;
 
 $card-variants: (
-  elevated: (
-    box-shadow: 0 6px 1px dv.$primary-dark,
-    border: none,
-    background: dv.$primary,
-    color: dv.$text-invert,
-    font-weight: 600
-  ),
-  outlined: (
-    use-mixin: true,
-    mixin-border-color: $card-border-color,
-    mixin-bg-color: $card-background-color,
-    box-shadow: none,
-  ),
-  flat: (
-    box-shadow: none,
-    border: none,
-    background: dv.$primary,
-    color: dv.$text-invert,
-    font-weight: 600
-  ),
-  glass: (
-    use-mixin: true,
-    mixin-border-color: $card-border-color,
-    mixin-bg-color: rgba($card-background-color, 0.1),
-    backdrop-filter: blur(12px) saturate(150%),
-    box-shadow: 0 2px 8px rgba(dv.$shadow-color, 0.1),
-  ),
+    elevated: (
+        box-shadow: 0 6px 1px dv.$primary-dark,
+        border: none,
+        background: dv.$primary,
+        color: dv.$text-invert,
+        font-weight: iv.$weight-medium,
+    ),
+    outlined: (
+        use-mixin: true,
+        mixin-border-color: $card-border-color,
+        mixin-bg-color: $card-background-color,
+        box-shadow: none,
+    ),
+    flat: (
+        box-shadow: none,
+        border: none,
+        background: dv.$primary,
+        color: dv.$text-invert,
+        font-weight: 600,
+    ),
+    glass: (
+        use-mixin: true,
+        mixin-border-color: $card-border-color,
+        mixin-bg-color: rgba($card-background-color, 0.1),
+        backdrop-filter: blur(12px) saturate(150%),
+        box-shadow: 0 2px 8px rgba(dv.$shadow-color, 0.1),
+    ),
 );

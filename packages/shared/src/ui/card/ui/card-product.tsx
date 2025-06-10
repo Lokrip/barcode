@@ -11,7 +11,7 @@ export const CardProduct: FC = () => {
     return (
         <Layouts
             width={300}
-            variant="outlined"
+            variant="glass"
             footer={
                 <CardFooter
                     actions={
@@ -27,12 +27,18 @@ export const CardProduct: FC = () => {
             }
             content={
                 <CardContent>
-                    <h3 slot="title">Hello world</h3>
+                    <h3 slot="title">
+                        Заголовок карточки Lorem ipsum dolor sit amet
+                        consectetur adipisicing elit.
+                        dasdasdasdasdasdasdas
+                        asdasd
+                    </h3>
                     <p slot="description">
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                        Perferendis debitis odio repudiandae, illum dolor
-                        <span>text span</span> amet consectetur adipisicing
-                        elit.
+                        Описание карточки Lorem ipsum dolor sit amet consectetur
+                        adipisicing elit. Odio consequuntur, porro, recusandae
+                        suscipit at dolorem sapiente voluptates provident odit
+                        placeat iure laudantium sit dignissimos dolore
+                        praesentium hic nulla. Corrupti, eum?
                     </p>
                 </CardContent>
             }

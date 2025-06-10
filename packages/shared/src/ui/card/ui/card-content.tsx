@@ -1,10 +1,11 @@
-import { Children, forwardRef, isValidElement, ReactElement } from "react";
+"use client";
+
+import { forwardRef } from "react";
 
 import styles from "../styles/card-content.module.scss";
 import { CardContentProps } from "../model/types/card-content-props";
 import clsx from "clsx";
-import { hasSlotProp } from "../../../utils/slots";
-import { isCardContentElement } from "../model/type-guards";
+import useSlot from "../../../utils/use-slot";
 
 export const CardContent = forwardRef<HTMLDivElement, CardContentProps>(
     (props, ref) => {
@@ -15,19 +16,14 @@ export const CardContent = forwardRef<HTMLDivElement, CardContentProps>(
             ...other
         } = props;
 
-        const childrenArray = Children.toArray(children).filter(hasSlotProp);
-
         const classes = clsx(styles.content, className);
 
-        if (!isCardContentElement(Component)) {
-            console.warn(
-                `Invalid component tag "${Component}" passed to CardContent. Using "div" instead.`
-            );
-        }
+        const Slot = useSlot(children, { withStyles: true, styles });
 
         return (
             <Component className={classes} ref={ref} {...other}>
-                {children}
+                <Slot name="title" />
+                <Slot name="description" />
             </Component>
         );
     }

@@ -21,6 +21,14 @@
 
     cursor: default;
 
+    h1,
+    h2,
+    h3,
+    h4,
+    h5 {
+        font-weight: iv.$weight-bold;
+    }
+
     &.#{iv.$class-prefix}fixedSize {
         width: 15.5rem;
         height: 16.75rem;

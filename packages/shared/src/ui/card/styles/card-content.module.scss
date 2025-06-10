@@ -1,7 +1,34 @@
 @use "@packages/sass/src/utilities/initial-variables" as iv;
+@use "@packages/sass/src/utilities/derived-variables" as dv;
+@use "@packages/sass/src/utilities/mixins" as mx;
 
 @use "./card-derived-variables" as cdv;
 
+@use "sass:map";
+
+$description-font-size: (
+    normal: dv.$size-normal,
+    medium: dv.$size-medium,
+);
+$title-font-size: (
+    medium: dv.$size-medium,
+    large: dv.$size-large,
+);
+
 .#{iv.$class-prefix}content {
     margin: 0px 0px cdv.$card-margin 0px;
+}
+.#{iv.$class-prefix}title {
+    @include mx.ellipsis;
+    font-size: map.get($title-font-size, medium);
+
+    @each $size, $font-size in $title-font-size {
+        &.#{iv.$class-prefix}--#{$size} {
+            font-size: $font-size;
+        }
+    }
+}
+
+.#{iv.$class-prefix}description {
+    font-size: map.get($description-font-size, normal);
 }

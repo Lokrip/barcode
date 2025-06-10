@@ -9,6 +9,13 @@ export { Checkbox } from "./src/ui/checkbox";
 export { Switch } from "./src/ui/switch";
 export { Avatar, AvatarGroup } from "./src/ui/avatar";
 export { Badge } from "./src/ui/badge";
+export {
+    CardProduct,
+    Card,
+    CardActions,
+    CardAvatar,
+    CardFooter,
+} from "./src/ui/card";
 
 export {
     correctUrl,
