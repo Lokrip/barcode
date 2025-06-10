@@ -1,8 +1,9 @@
 import React from "react";
+import { ClassNameType } from "../types/react";
 
 export type SlotName = string;
 
-export type SlotChildrenProps = { slot?: unknown };
+export type SlotChildrenProps = { slot?: unknown } & ClassNameType;
 export type SlotProps = {
     name?: SlotName;
     children?: React.ReactNode;

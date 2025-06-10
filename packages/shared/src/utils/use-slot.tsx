@@ -42,7 +42,13 @@ const flattenChildren = (
  * @param children React elements
  * @returns a `Slot` component that allows selecting elements by slot name
  */
-const useSlot = (children: React.ReactNode) => {
+const useSlot = (
+    children: React.ReactNode,
+    options: { withStyles: boolean; styles: CSSModuleClasses } = {
+        withStyles: false,
+        styles: {},
+    }
+) => {
     const childArray = flattenChildren(children);
 
     const slots = childArray.reduce<SlotsMapWithDefault>(
@@ -52,6 +58,15 @@ const useSlot = (children: React.ReactNode) => {
             }
 
             const slotName = child.props?.slot as SlotName | undefined;
+
+            if (options.withStyles && slotName) {
+                const className = options.styles[slotName] || "";
+                child = React.cloneElement(child, {
+                    className: `${
+                        child.props.className || ""
+                    } ${className}`.trim(),
+                });
+            }
 
             if (slotName) {
                 result[slotName] = child;
