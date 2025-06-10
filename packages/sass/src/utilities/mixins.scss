@@ -88,6 +88,12 @@ $gradient-opacity: 0.13;
     }
 }
 
+@mixin ellipsis {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
 // Responsiveness
 
 @mixin from($device) {
