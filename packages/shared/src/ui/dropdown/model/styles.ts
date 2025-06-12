@@ -1,7 +1,11 @@
 import { GroupBase, StylesConfig } from "react-select";
 import { OptionType } from "./types";
 
-export const singleSelectStyles: StylesConfig<OptionType, false> = {
+export const singleSelectStyles: StylesConfig<
+    OptionType | GroupBase<OptionType>,
+    false,
+    GroupBase<OptionType>
+> = {
     control: (provided) => ({
         ...provided,
         borderRadius: "8px",

@@ -9,8 +9,9 @@ export function SingleDropdown({ name, id, options }: DropdownProps) {
         <Select
             name={name}
             instanceId={id}
-            options={options}
             styles={singleSelectStyles}
+            defaultValue={options[0]}
+            options={options}
             isMulti={false}
         />
     );
