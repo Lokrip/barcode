@@ -2,7 +2,7 @@ export { Button } from "./src/ui/button";
 export { Input } from "./src/ui/input";
 export { Container } from "./src/ui/container";
 export { Skeleton } from "./src/ui/skeleton";
-export { Dropdown, DropdownOption } from "./src/ui/dropdown";
+export { SingleDropdown, MultiDropdown } from "./src/ui/dropdown";
 export { Item } from "./src/ui/item";
 export { List, ListContainer } from "./src/ui/list";
 export { Checkbox } from "./src/ui/checkbox";
