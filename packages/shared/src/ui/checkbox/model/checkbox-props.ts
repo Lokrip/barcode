@@ -1,10 +1,15 @@
-import {ComponentPropsWithRef, ElementType, ReactNode} from "react";
+import {
+    ComponentPropsWithoutRef,
+    ComponentPropsWithRef,
+    ElementType,
+    ReactNode
+} from "react";
+import { WithRef } from "../../../types/react";
 
 export interface CheckboxOwnProps {
     checked?: boolean;
     indeterminate?: boolean;
     disabled?: boolean;
-    onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
     icon?: ReactNode;
     checkedIcon?: ReactNode;
     indeterminateIcon?: ReactNode;
@@ -13,8 +18,8 @@ export interface CheckboxOwnProps {
     "aria-label"?: string;
 }
 
-export type PolymorphicProps<C extends ElementType, Props = {}> = Props & {
-    as?: C;
-} & Omit<ComponentPropsWithRef<C>, keyof Props | "as">;
-
-export type CheckboxProps<C extends ElementType = "input"> = PolymorphicProps<C, CheckboxOwnProps>;
+export type CheckboxProps<C extends ElementType = "input"> =
+    CheckboxOwnProps &
+    WithRef<HTMLElement> &
+    ComponentPropsWithRef<C> &
+    Omit<ComponentPropsWithoutRef<C>, keyof CheckboxOwnProps>;
