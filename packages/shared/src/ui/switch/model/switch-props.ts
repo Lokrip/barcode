@@ -1,10 +1,30 @@
-import { ElementType } from "react";
-import { ClassNameType } from "../../../types/react";
-import { BaseSwitchType } from "./switch-types";
+import {
+    ComponentPropsWithoutRef,
+    ComponentPropsWithRef,
+    ElementType,
+    KeyboardEvent
+} from "react";
+import { WithRef} from "../../../types/react";
+import {
+    SwitchColor,
+    SwitchSize
+} from "./switch-types";
 
-export interface SwitchProps extends ClassNameType, BaseSwitchType {}
+export interface BaseSwitchProps {
+    as?: ElementType;
+    size?: SwitchSize;
+    color?: SwitchColor;
+    checked?: boolean;
+    defaultChecked?: boolean;
+    isChecked: boolean;
+    onKeyToggle: (e: KeyboardEvent) => void;
+    disabled: boolean;
+    className?: string;
+}
 
-export type SwitchBaseGenericProps<C extends ElementType> = ClassNameType & {
-    as?: C;
-    ownerState: BaseSwitchType;
-};
+export type SwitchProps<C extends ElementType = "div"> =
+    BaseSwitchProps &
+    WithRef<HTMLElement> &
+    ComponentPropsWithRef<C> &
+    Omit<ComponentPropsWithoutRef<C>, keyof BaseSwitchProps>;
+
