@@ -1,10 +1,36 @@
-import { ElementType } from "react";
-import { ClassNameType } from "../../../types/react";
-import { BaseBadgeType } from "./badge-types";
+import {
+    ComponentPropsWithRef,
+    ElementType,
+    ReactNode
+} from "react";
+import { WithRef } from "../../../types/react";
+import {
+    BadgeColor,
+    BadgeOverlap,
+    BadgeSize,
+    BadgeVariant
+} from "./badge-types";
 
-export interface BadgeProps extends ClassNameType, BaseBadgeType {}
-
-export type BaseBadgeGenericProps<C extends  ElementType> = ClassNameType & {
-    as?: C;
-    ownerState: BaseBadgeType;
+export interface BadgeOwnProps {
+    size?: BadgeSize;
+    color?: BadgeColor;
+    variant?: BadgeVariant;
+    badgeContent?: ReactNode;
+    showZero?: boolean;
+    max?: number;
+    overlap?: BadgeOverlap;
+    anchorOrigin?: {
+        vertical: "top" | "bottom";
+        horizontal: "left" | "right";
+    };
+    className?: string;
+    children?: ReactNode;
+    component?: ElementType;
 }
+
+export type BadgeProps<C extends ElementType = "span"> =
+    BadgeOwnProps &
+    WithRef<C> &
+    ComponentPropsWithRef<C> &
+    Omit<ComponentPropsWithRef<C>, keyof BadgeOwnProps>;
+
