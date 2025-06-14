@@ -1,4 +1,4 @@
-import {ComponentPropsWithRef, ElementType, ReactNode} from "react";
+import { ComponentPropsWithRef, ElementType, ReactNode } from "react";
 
 export type BadgeVariant = "standard" | "dot" | "outlined";
 export type BadgeSize = "small" | "medium" | "large";

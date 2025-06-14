@@ -1,4 +1,8 @@
-import React, { ComponentPropsWithRef, ElementType } from "react";
+import {
+    ChangeEvent,
+    ComponentPropsWithRef,
+    ElementType
+} from "react";
 
 export type SwitchElements =
     | "input"
@@ -30,6 +34,6 @@ export interface BaseSwitchType {
     checked?: boolean;
     defaultChecked?: boolean;
     disabled?: boolean;
-    onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
+    onChange?: (event: ChangeEvent<HTMLInputElement>) => void;
     component?: SwitchElements;
 }

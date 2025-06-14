@@ -1,7 +1,10 @@
 import { PropsWithChildren, ReactNode } from "react";
 import { ClassNameType } from "../../../types/react";
-import { InputSize, InputVariant } from "../input-type";
-import { InputType } from "./input-type";
+import {
+    InputSize,
+    InputType,
+    InputVariant
+} from "./input-type";
 
 export interface InputProps extends PropsWithChildren, ClassNameType {
     variant?: InputVariant;

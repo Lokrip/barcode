@@ -1,5 +1,5 @@
 import { ElementType } from "react";
-import { ClassNameType } from "../../../types/react.ts";
+import { ClassNameType } from "../../../types/react";
 import { BaseBadgeType } from "./badge-types";
 
 export interface BadgeProps extends ClassNameType, BaseBadgeType {}

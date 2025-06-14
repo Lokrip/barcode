@@ -28,7 +28,7 @@ export const SwitchBase = forwardRef(
         const Component: ElementType = as || "div";
         const isInput = Component === "input";
 
-        const handleToggle = (e: React.ChangeEvent<any> | React.MouseEvent) => {
+        const handleToggle = (e: React.ChangeEvent | React.MouseEvent) => {
             if (disabled) return;
             const next = !isChecked;
 
