@@ -4,7 +4,7 @@ import {
     ReactNode,
 } from "react";
 import { AvatarSize, AvatarVariant } from "./avatar-types";
-import { WithRef } from "../../../types/react.ts";
+import { WithRef } from "../../../types/react";
 
 export type BaseAvatarProps<C extends ElementType = "button"> = {
     src?: string;

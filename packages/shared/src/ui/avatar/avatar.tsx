@@ -1,8 +1,8 @@
-import {ElementType} from "react";
+import { ElementType } from "react";
 import clsx from "clsx";
 import styles from "./styles/avatar.module.scss";
-import {AvatarProps} from "./model/avatar-props.ts";
-import {getFallbackContent} from "./model/trimFallbackContent.ts";
+import { AvatarProps } from "./model/avatar-props";
+import { getFallbackContent } from "./model/trimFallbackContent";
 
 export const Avatar = <C extends ElementType = "button">({
     as,

@@ -1,110 +1,53 @@
-'use client'
-
-import React, { ElementType, forwardRef, useState } from "react";
+import { ElementType } from "react";
 import clsx from "clsx";
 import styles from "./styles/switch.module.scss";
 import { correctClass } from "../../utils";
-import { SwitchProps, SwitchBaseGenericProps } from "./model/switch-props";
-import { BaseSwitchType, PolymorphicRef } from "./model/switch-types";
+import { useSwitch } from "./model/useSwitch";
+import { SwitchProps } from "./model/switch-props";
 
-export const SwitchBase = forwardRef(
-    <C extends ElementType = "div">(
-        { as, ownerState, className, ...rest }: SwitchBaseGenericProps<C>,
-        ref: PolymorphicRef<C>
-    ) => {
-        const {
-            checked,
-            defaultChecked,
-            disabled = false,
-            size = "medium",
-            color = "primary",
-            onChange,
-        } = ownerState || {};
+export const Switch = <C extends ElementType = "div">(props: SwitchProps<C>) => {
+    const {
+        as,
+        checked,
+        defaultChecked,
+        disabled = false,
+        size = "medium",
+        color = "primary",
+        onChange,
+        className = "",
+        ...rest
+    } = props;
 
-        const [internalChecked, setInternalChecked] = useState(defaultChecked || false);
-        const isControlled = checked !== undefined;
-        const isChecked = isControlled ? checked : internalChecked;
+    const { isChecked, toggle, keyToggle } = useSwitch({
+        checked,
+        defaultChecked,
+        disabled,
+        onChange,
+    });
 
-        const Component: ElementType = as || "div";
-        const isInput = Component === "input";
+    const Component = as || "div";
+    const isInput = Component === "input";
 
-        const handleToggle = (e: React.ChangeEvent<any> | React.MouseEvent) => {
-            if (disabled) return;
-            const next = !isChecked;
+    const classNameValid = correctClass(
+        clsx(
+            styles.switch,
+            styles[size],
+            styles[color],
+            isChecked && styles.checked,
+            disabled && styles.disabled
+        ),
+        className
+    );
 
-            if (!isControlled) setInternalChecked(next);
-
-            if (isInput && "target" in e && e.target instanceof HTMLInputElement) {
-                onChange?.(e as React.ChangeEvent<HTMLInputElement>);
-            } else {
-                const syntheticEvent = {
-                    ...e,
-                    target: { checked: next },
-                } as unknown as React.ChangeEvent<HTMLInputElement>;
-                onChange?.(syntheticEvent);
-            }
-        };
-
-        const classNameValid = correctClass(
-            clsx(
-                styles.switch,
-                styles[size],
-                styles[color],
-                isChecked && styles.checked,
-                disabled && styles.disabled
-            ),
-            className!
-        );
-
-        return (
-            <Component
-                ref={ref}
-                className={classNameValid}
-                onClick={!isInput ? handleToggle : undefined}
-                onChange={isInput ? handleToggle : undefined}
-                {...(isInput && {
-                    checked: isChecked,
-                    disabled,
-                })}
-                {...rest}
-            />
-        );
-    }
-);
-
-export const Switch = forwardRef<HTMLElement, SwitchProps>(
-    (
-        {
-            component = "div",
-            size = "medium",
-            color = "primary",
-            checked,
-            defaultChecked,
-            disabled,
-            className,
-            onChange,
-            ...props
-        },
-        ref
-    ) => {
-        const ownerState: BaseSwitchType = {
-            ...props,
-            component,
-            size,
-            color,
-            checked,
-            defaultChecked,
-            disabled,
-            onChange,
-        };
-
-        return (
-            <SwitchBase
-                as={component}
-                className={className}
-                ownerState={ownerState}
-                ref={ref}
-            />
-        );
-    }
-);
+    return (
+        <Component
+            className={classNameValid}
+            onClick={!isInput ? toggle : undefined}
+            onChange={isInput ? toggle : undefined}
+            {...(isInput
+                ? { checked: isChecked, disabled }
+                : { role: "switch", tabIndex: disabled ? -1 : 0, onKeyDown: keyToggle })}
+            {...rest}
+        />
+    );
+};

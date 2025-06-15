@@ -1,8 +1,8 @@
-import {Children, CSSProperties, ElementType, isValidElement} from "react";
+import { Children, CSSProperties, ElementType, isValidElement } from "react";
 import clsx from "clsx";
 import styles from "../styles/avatar.module.scss";
 import { Avatar } from "../avatar";
-import { AvatarGroupProps } from "../model/avatar-props.ts";
+import { AvatarGroupProps } from "../model/avatar-props";
 
 export const AvatarGroup = <C extends ElementType = "div">({
     as,

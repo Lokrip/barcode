@@ -1,25 +1,22 @@
-import {ElementType, forwardRef, JSX} from "react";
+import { ElementType, KeyboardEvent } from "react";
 import clsx from "clsx";
 import styles from "./styles/checkbox.module.scss";
 import { CheckboxProps } from "./model/checkbox-props";
-import { PolymorphicRef } from "./model/checkbox-types";
 
-export const CheckboxBase = <C extends ElementType = "input">(
-    {
-        as,
-        checked = false,
-        indeterminate = false,
-        disabled = false,
-        onChange,
-        icon,
-        checkedIcon,
-        indeterminateIcon,
-        label,
-        className,
-        ...rest
-    }: CheckboxProps<C>,
-    ref: PolymorphicRef<C>
-) => {
+export const Checkbox = <C extends ElementType = "input">({
+    as,
+    checked = false,
+    indeterminate = false,
+    disabled = false,
+    onChange,
+    icon,
+    checkedIcon,
+    indeterminateIcon,
+    label,
+    className = "",
+    ref,
+    ...rest
+}: CheckboxProps<C>) => {
     const Component = as || "input";
     const isInput = Component === "input";
 
@@ -36,6 +33,20 @@ export const CheckboxBase = <C extends ElementType = "input">(
         className
     );
 
+    const handleKeyDown = (event: KeyboardEvent) => {
+        if ((event.key === " " || event.key === "Enter") && !disabled) {
+            event.preventDefault();
+            if (onChange) {
+                const syntheticEvent = {
+                    ...event,
+                    target: { checked: !checked },
+                    currentTarget: { checked: !checked },
+                };
+                onChange(syntheticEvent);
+            }
+        }
+    };
+
     return (
         <label className={classes}>
             <Component
@@ -45,6 +56,9 @@ export const CheckboxBase = <C extends ElementType = "input">(
                 onChange={onChange}
                 disabled={disabled}
                 aria-checked={indeterminate ? "mixed" : checked}
+                {...(isInput
+                    ? {}
+                    : { role: "checkbox", tabIndex: disabled ? -1 : 0, onKeyDown: handleKeyDown })}
                 {...rest}
             />
             <span className={styles.icon}>
@@ -58,9 +72,3 @@ export const CheckboxBase = <C extends ElementType = "input">(
         </label>
     );
 };
-
-export const Checkbox = forwardRef(CheckboxBase as any) as unknown as <
-    C extends ElementType = "input"
->(
-    props: CheckboxProps<C> & { ref?: PolymorphicRef<C> }
-) => JSX.Element;

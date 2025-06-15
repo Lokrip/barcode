@@ -1,4 +1,4 @@
-import { ClassNameType } from "../../../types/react.ts";
+import { ClassNameType } from "../../../types/react";
 
 export type DirectionType = "row" | "column"
 

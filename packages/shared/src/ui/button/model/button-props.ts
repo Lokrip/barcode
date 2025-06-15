@@ -5,8 +5,8 @@ import {
     ComponentPropsWithRef,
     Ref
 } from "react";
-import {ButtonColor, ButtonSize, ButtonTypes, ButtonVariant} from "./button-types";
-import {WithRef} from "../../../types/react.ts";
+import { ButtonColor, ButtonSize, ButtonTypes, ButtonVariant } from "./button-types";
+import { WithRef } from "../../../types/react";
 
 export interface ButtonOwnProps {
     variant?: ButtonVariant;
