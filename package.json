@@ -1,10 +1,6 @@
 {
     "name": "module-federation",
     "version": "1.0.0",
-    "workspaces": [
-        "packages/*",
-        "services/*"
-    ],
     "license": "ISC",
     "dependencies": {
         "host-app": "file:",

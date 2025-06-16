@@ -41,8 +41,8 @@
         "vite": "^6.3.1"
     },
     "dependencies": {
-        "@packages/sass": "1.0.0",
-        "@packages/shared": "file:",
+        "@packages/shared": "workspace:*",
+        "@packages/sass": "workspace:*",
         "clsx": "^2.1.1",
         "lucide-react": "^0.503.0",
         "next": "^15.3.3",
