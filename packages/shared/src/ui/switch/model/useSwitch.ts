@@ -1,3 +1,5 @@
+"use client";
+
 import { useState, ChangeEvent, MouseEvent, KeyboardEvent } from "react";
 
 type EventType = ChangeEvent | MouseEvent | KeyboardEvent;
