@@ -1,5 +1,4 @@
 "use client";
-
 import { useState, ChangeEvent, MouseEvent, KeyboardEvent } from "react";
 
 type EventType = ChangeEvent | MouseEvent | KeyboardEvent;
@@ -15,7 +14,9 @@ export function useSwitch({
     disabled?: boolean;
     onChange?: (event: ChangeEvent<HTMLInputElement>) => void;
 }) {
-    const [internalChecked, setInternalChecked] = useState(defaultChecked || false);
+    const [internalChecked, setInternalChecked] = useState(
+        defaultChecked || false
+    );
     const isControlled = controlledChecked !== undefined;
     const isChecked = isControlled ? controlledChecked : internalChecked;
 
