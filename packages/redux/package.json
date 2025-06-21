@@ -1,9 +1,14 @@
 {
-    "name": "@packages/sass",
+    "name": "@packages/redux",
     "private": true,
     "version": "1.0.0",
-    "main": "./src/_index.scss",
+    "main": "index.ts",
     "type": "module",
+    "scripts": {
+        "build": "tsc -b && vite build",
+        "lint": "eslint .",
+        "preview": "vite preview"
+    },
     "devDependencies": {
         "@eslint/js": "^9.22.0",
         "@types/react": "^19.0.10",
@@ -15,10 +20,12 @@
         "vite": "^6.3.1"
     },
     "dependencies": {
-        "@packages/sass": "workspace:1.0.0",
+        "@packages/redux": "workspace:1.0.0",
+        "@reduxjs/toolkit": "^2.8.2",
         "clsx": "^2.1.1",
-        "lucide-react": "^0.503.0",
+        "next": "^15.3.3",
         "react": "^19.0.0",
-        "react-dom": "^19.0.0"
+        "react-dom": "^19.0.0",
+        "react-redux": "^9.2.0"
     }
 }
