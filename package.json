@@ -2,6 +2,7 @@
     "name": "module-federation",
     "version": "1.0.0",
     "license": "ISC",
+    "type": "module",
     "scripts": {
         "test": "vitest",
         "test:unit": "cross-env TEST_TYPE=unit vitest run",
@@ -9,9 +10,13 @@
         "test:snapshot": "cross-env TEST_TYPE=snapshot vitest run",
         "test:e2e": "cross-env TEST_TYPE=e2e vitest run",
         "coverage": "vitest run --coverage",
-        "link": "eslint . --cache --ext .ts,.js"
+        "link": "eslint . --cache --ext .ts,.js",
+        "commitlint": "commitlint --edit",
+        "lint:last-commit": "npx commitlint --from HEAD~1 --to HEAD --verbose"
     },
     "dependencies": {
+        "@commitlint/cli": "^19.8.1",
+        "@commitlint/config-conventional": "^19.8.1",
         "cross-env": "^7.0.3",
         "host-app": "file:",
         "module-federation": "file:",
@@ -31,6 +36,7 @@
         "eslint": "^9.29.0",
         "eslint-plugin-react": "^7.37.5",
         "globals": "^16.2.0",
+        "husky": "^9.1.7",
         "tailwindcss": "^4",
         "typescript": "^5",
         "typescript-eslint": "^8.34.0",
