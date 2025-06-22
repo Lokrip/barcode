@@ -2,7 +2,17 @@
     "name": "module-federation",
     "version": "1.0.0",
     "license": "ISC",
+    "scripts": {
+        "test": "vitest",
+        "test:unit": "cross-env TEST_TYPE=unit vitest run",
+        "test:integration": "cross-env TEST_TYPE=integration vitest run",
+        "test:snapshot": "cross-env TEST_TYPE=snapshot vitest run",
+        "test:e2e": "cross-env TEST_TYPE=e2e vitest run",
+        "coverage": "vitest run --coverage",
+        "link": "eslint . --cache --ext .ts,.js"
+    },
     "dependencies": {
+        "cross-env": "^7.0.3",
         "host-app": "file:",
         "module-federation": "file:",
         "react": "^19.0.0",
