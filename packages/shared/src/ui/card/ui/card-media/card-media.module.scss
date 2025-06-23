@@ -2,7 +2,7 @@
 @use "@packages/sass/src/utilities/derived-variables" as dv;
 @use "@packages/sass/src/flex/mixins" as fmx;
 
-@use "./card-derived-variables" as cdv;
+@use "../../styles/card-derived-variables" as cdv;
 
 .#{iv.$class-prefix}media {
     @include fmx.flex-column-center-start();

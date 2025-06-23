@@ -1,20 +1,32 @@
-import { PropsWithChildren, ReactNode } from "react";
-import { ClassNameType } from "../../../types/react";
 import {
-    InputSize,
-    InputType,
-    InputVariant
-} from "./input-type";
+    InputHTMLAttributes,
+    ElementType,
+    ReactNode,
+} from "react";
+import { InputColor, InputSize, InputType, InputVariant } from "./input-types";
+import { WithRef } from "../../../types/react";
 
-export interface InputProps extends PropsWithChildren, ClassNameType {
+type NativeInputProps = Omit<InputHTMLAttributes<HTMLInputElement>, "size" | "type">;
+
+export interface InputOwnProps extends NativeInputProps {
     variant?: InputVariant;
-    size?: InputSize;
     type?: InputType;
-    disabled?: boolean;
-    onChange?: () => void;
+    size?: InputSize;
+    color?: InputColor;
     fullWidth?: boolean;
+    autoHeight?: boolean;
+    autoWidth?: boolean;
+    rows?: string | number;
+    maxRows?: string | number;
+    minRows?: string | number;
     startIcon?: ReactNode;
     endIcon?: ReactNode;
+    error?: string | boolean;
+    helperText?: string;
+    label?: string;
     loading?: boolean;
-    loadingText?: string;
+    as?: ElementType;
+    eyeWatch?: boolean;
 }
+
+export type InputProps = InputOwnProps & Omit<WithRef<HTMLInputElement>, keyof InputOwnProps>;

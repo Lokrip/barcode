@@ -2,7 +2,7 @@
 @use "@packages/sass/src/utilities/derived-variables" as dv;
 @use "@packages/sass/src/utilities/mixins" as mx;
 
-@use "./card-derived-variables" as cdv;
+@use "../../styles/card-derived-variables" as cdv;
 
 @use "sass:map";
 
