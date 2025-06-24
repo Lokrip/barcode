@@ -22,7 +22,7 @@ export const CardRoot = forwardRef<HTMLDivElement, CardRootGenericProps>(
         const cardStyle = { width, height };
 
         return (
-            <div className={classNameValid} ref={ref} style={cardStyle}>
+            <div data-testid="card-root" className={classNameValid} ref={ref} style={cardStyle}>
                 {children}
             </div>
         );

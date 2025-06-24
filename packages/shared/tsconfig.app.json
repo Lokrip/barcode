@@ -23,7 +23,7 @@
     "noUncheckedSideEffectImports": true,
     "paths": {
         "@packages/sass": ["./"]
-    }
+    },
   },
   "include": ["src", "../widgets/src/layouts/sass-layouts.tsx"]
 }
