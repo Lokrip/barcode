@@ -1,11 +1,11 @@
 import { FC } from "react";
-import { Layouts } from "../_ui/_layouts";
-import { CardFooter } from "./card-footer";
-import { Avatar } from "../../avatar";
+import { Layouts } from "../../_ui/_layouts";
+import { CardFooter } from "../card-footer";
+import { Avatar } from "../../../avatar";
 import { EllipsisVertical } from "lucide-react";
-import { Button } from "../../button";
-import { CardMedia } from "./card-media";
-import { CardContent } from "./card-content";
+import { Button } from "../../../button";
+import { CardMedia } from "../card-media";
+import { CardContent } from "../card-content";
 
 export const CardProduct: FC = () => {
     return (
@@ -29,8 +29,7 @@ export const CardProduct: FC = () => {
                 <CardContent>
                     <h3 slot="title">
                         Заголовок карточки Lorem ipsum dolor sit amet
-                        consectetur adipisicing elit.
-                        dasdasdasdasdasdasdas
+                        consectetur adipisicing elit. dasdasdasdasdasdasdas
                         asdasd
                     </h3>
                     <p slot="description">

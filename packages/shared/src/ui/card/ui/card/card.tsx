@@ -1,9 +1,9 @@
 import { forwardRef } from "react";
-import { CardProps, CardRootGenericProps } from "../model/types/card-props";
-import { correctClass } from "../../../utils";
-import clsx from "clsx";
 
-import styles from "../styles/card.module.scss";
+import styles from "./card.module.scss";
+import { correctClass } from "../../../../utils";
+import { CardProps, CardRootGenericProps } from "../../model/types/card-props";
+import clsx from "clsx";
 
 export const CardRoot = forwardRef<HTMLDivElement, CardRootGenericProps>(
     ({ ownerState, className, children }, ref) => {

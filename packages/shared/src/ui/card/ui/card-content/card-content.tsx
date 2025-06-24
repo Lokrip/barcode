@@ -2,10 +2,10 @@
 
 import { forwardRef } from "react";
 
-import styles from "../styles/card-content.module.scss";
-import { CardContentProps } from "../model/types/card-content-props";
+import styles from "./card-content.module.scss";
+import { CardContentProps } from "../../model/types/card-content-props";
 import clsx from "clsx";
-import useSlot from "../../../utils/use-slot";
+import useSlot from "../../../../utils/use-slot";
 
 export const CardContent = forwardRef<HTMLDivElement, CardContentProps>(
     (props, ref) => {

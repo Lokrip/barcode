@@ -2,16 +2,16 @@
 
 import { FC } from "react";
 
-import styles from "../styles/card-footer.module.scss";
+import styles from "./card-footer.module.scss";
 import {
     CardFooterProps,
     CardFooterRootGenericProps,
-} from "../model/types/card-footer-props";
-import { correctClass } from "../../../utils";
+} from "../../model/types/card-footer-props";
+import { correctClass } from "../../../../utils";
 import clsx from "clsx";
-import { CardAvatar } from "./card-avatar";
-import { CardActions } from "./card-actions";
-import useSlot from "../../../utils/use-slot";
+import { CardAvatar } from "../card-avatar";
+import { CardActions } from "../card-actions";
+import useSlot from "../../../../utils/use-slot";
 
 export const CardFooterRoot: FC<CardFooterRootGenericProps> = ({
     ownerState,

@@ -2,9 +2,9 @@
 @use "@packages/sass/src/utilities/derived-variables" as dv;
 @use "@packages/sass/src/utilities/mixins" as m;
 
-@use "./card-initial-variables" as civ;
-@use "./card-derived-variables" as cdv;
-@use "./mixins.scss" as cm;
+@use "../../styles/card-initial-variables" as civ;
+@use "../../styles/card-derived-variables" as cdv;
+@use "../../styles/mixins.scss" as cm;
 
 @use "sass:map";
 @use "sass:list";
