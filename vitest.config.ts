@@ -25,5 +25,8 @@ export default defineConfig({
             // some artifacts in the fixtures have spec files that we're not using
             "**/*.spec.js",
         ],
+
+        setupFiles: ["./tests/setup.ts"],
+        environment: "jsdom",
     },
 });
