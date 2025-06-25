@@ -305,7 +305,7 @@ importers:
   services/auth-app:
     dependencies:
       auth-app:
-        specifier: workspace:*
+        specifier: 'file:'
         version: 'link:'
       next:
         specifier: 15.3.1
@@ -348,39 +348,26 @@ importers:
   services/host-app:
     dependencies:
       '@packages/sass':
-        specifier: workspace:*
+        specifier: workspace:1.0.0
         version: link:../../packages/sass
       '@packages/shared':
-        specifier: workspace:*
+        specifier: workspace:1.0.0
         version: link:../../packages/shared
       '@packages/widgets':
-        specifier: workspace:*
+        specifier: workspace:1.0.0
         version: link:../../packages/widgets
-      host-app:
-        specifier: workspace:*
-        version: 'link:'
       next:
         specifier: 15.3.2
         version: 15.3.2(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(sass@1.89.2)
-    devDependencies:
-      '@next/eslint-plugin-next':
-        specifier: ^15.3.3
-        version: 15.3.4
-      eslint-config-next:
-        specifier: 15.3.1
-        version: 15.3.1(eslint@9.29.0(jiti@2.4.2))(typescript@5.8.3)
-      eslint-plugin-react-hooks:
-        specifier: ^5.2.0
-        version: 5.2.0(eslint@9.29.0(jiti@2.4.2))
 
   services/remote-app:
     dependencies:
       '@packages/shared':
-        specifier: workspace:*
+        specifier: workspace:1.0.0
         version: link:../../packages/shared
       remote-app:
-        specifier: workspace:*
-        version: 'link:'
+        specifier: 'file:'
+        version: file:services/remote-app
 
 packages:
 
@@ -973,9 +960,6 @@ packages:
 
   '@next/eslint-plugin-next@15.3.1':
     resolution: {integrity: sha512-oEs4dsfM6iyER3jTzMm4kDSbrQJq8wZw5fmT6fg2V3SMo+kgG+cShzLfEV20senZzv8VF+puNLheiGPlBGsv2A==}
-
-  '@next/eslint-plugin-next@15.3.4':
-    resolution: {integrity: sha512-lBxYdj7TI8phbJcLSAqDt57nIcobEign5NYIKCiy0hXQhrUbTqLqOaSDi568U6vFg4hJfBdZYsG4iP/uKhCqgg==}
 
   '@next/swc-darwin-arm64@15.3.1':
     resolution: {integrity: sha512-hjDw4f4/nla+6wysBL07z52Gs55Gttp5Bsk5/8AncQLJoisvTBP0pRIBK/B16/KqQyH+uN4Ww8KkcAqJODYH3w==}
@@ -3496,6 +3480,9 @@ packages:
     resolution: {integrity: sha512-dYqgNSZbDwkaJ2ceRd9ojCGjBq+mOm9LmtXnAnEGyHhN/5R7iDW2TRw3h+o/jCFxus3P2LfWIIiwowAjANm7IA==}
     engines: {node: '>= 0.4'}
 
+  remote-app@file:services/remote-app:
+    resolution: {directory: services/remote-app, type: directory}
+
   require-directory@2.1.1:
     resolution: {integrity: sha512-fGxEI7+wsG9xrvdjsrlmL22OMTTiHRwAMroiEeMgq8gzoLC/PQr7RsRDSTLUg/bZAZtF+TVIkHc6/4RIKrui+Q==}
     engines: {node: '>=0.10.0'}
@@ -4739,10 +4726,6 @@ snapshots:
   '@next/env@15.3.3': {}
 
   '@next/eslint-plugin-next@15.3.1':
-    dependencies:
-      fast-glob: 3.3.1
-
-  '@next/eslint-plugin-next@15.3.4':
     dependencies:
       fast-glob: 3.3.1
 
@@ -7285,6 +7268,10 @@ snapshots:
       get-proto: 1.0.1
       gopd: 1.2.0
       set-function-name: 2.0.2
+
+  remote-app@file:services/remote-app:
+    dependencies:
+      '@packages/shared': link:packages/shared
 
   require-directory@2.1.1: {}
 
