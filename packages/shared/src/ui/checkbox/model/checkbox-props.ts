@@ -1,8 +1,8 @@
 import {
-    ComponentPropsWithoutRef,
-    ComponentPropsWithRef,
     ElementType,
-    ReactNode
+    ReactNode,
+    ChangeEvent,
+    KeyboardEvent
 } from "react";
 import { WithRef } from "../../../types/react";
 
@@ -16,10 +16,10 @@ export interface CheckboxOwnProps {
     label?: ReactNode;
     className?: string;
     "aria-label"?: string;
+    onClick?: (e: ChangeEvent<HTMLInputElement> | KeyboardEvent) => void;
+    as?: ElementType;
 }
 
 export type CheckboxProps<C extends ElementType = "input"> =
     CheckboxOwnProps &
-    WithRef<HTMLElement> &
-    ComponentPropsWithRef<C> &
-    Omit<ComponentPropsWithoutRef<C>, keyof CheckboxOwnProps>;
+    Omit<WithRef<C>, keyof CheckboxOwnProps>;
