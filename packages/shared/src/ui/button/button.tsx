@@ -40,13 +40,14 @@ export const Button = ({
 
     return (
         <Component
+            data-testid="button-root"
             ref={ref}
             type={isButton ? type || "button" : undefined}
             className={classes}
             disabled={isButton ? disabled || loading : undefined}
             {...(isAnchor ? { href } : {})}
             onClick={!disabled && !loading ? onClick : undefined}
-            aria-busy={loading}
+            aria-busy={loading ? "true" : undefined}
             aria-label={iconOnly && typeof children === "string" ? children : undefined}
             role={!isButton ? "button" : undefined}
             tabIndex={!isButton ? (disabled || loading ? -1 : 0) : undefined}
