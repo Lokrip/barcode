@@ -41,6 +41,7 @@ export const Switch = <C extends ElementType = "div">(props: SwitchProps<C>) => 
 
     return (
         <Component
+            type={isInput ? 'checkbox' : undefined}  // <-- добавлено для input
             className={classNameValid}
             onClick={!isInput ? toggle : undefined}
             onChange={isInput ? toggle : undefined}
