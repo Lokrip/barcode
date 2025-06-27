@@ -1,9 +1,8 @@
-import { ElementType } from "react";
 import clsx from "clsx";
 import styles from "./styles/badge.module.scss";
 import { BadgeProps } from "./model/badge-props";
 
-export const Badge = <C extends ElementType = "span">({
+export const Badge = ({
     as,
     size = "medium",
     color = "primary",
@@ -17,7 +16,7 @@ export const Badge = <C extends ElementType = "span">({
     children,
     ref,
     ...rest
-}: BadgeProps<C>) => {
+}: BadgeProps) => {
     const Component = as || "span";
 
     let displayBadgeContent = badgeContent;
