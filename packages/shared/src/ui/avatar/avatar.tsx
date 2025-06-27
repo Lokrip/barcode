@@ -18,7 +18,6 @@ export const Avatar = <C extends ElementType = "button">({
     ...restProps
 }: AvatarProps<C>) => {
     const Component = as || "button";
-    const isAnchor = Component === "a";
 
     const classes = clsx(
         styles.avatar,
@@ -32,7 +31,6 @@ export const Avatar = <C extends ElementType = "button">({
             ref={ref}
             className={classes}
             onClick={onClick}
-            {...(isAnchor && restProps.href ? { href: restProps.href } : {})}
             {...restProps}
         >
             {src ? (
