@@ -1,6 +1,5 @@
 import {
-    ComponentPropsWithoutRef,
-    ComponentPropsWithRef,
+    ChangeEvent,
     ElementType,
     KeyboardEvent
 } from "react";
@@ -16,15 +15,13 @@ export interface BaseSwitchProps {
     color?: SwitchColor;
     checked?: boolean;
     defaultChecked?: boolean;
-    isChecked: boolean;
-    onKeyToggle: (e: KeyboardEvent) => void;
-    disabled: boolean;
+    onKeyToggle?: (e: KeyboardEvent) => void;
+    disabled?: boolean;
+    onChange?: (e: ChangeEvent<HTMLInputElement>) => void;
     className?: string;
 }
 
 export type SwitchProps<C extends ElementType = "div"> =
     BaseSwitchProps &
-    WithRef<HTMLElement> &
-    ComponentPropsWithRef<C> &
-    Omit<ComponentPropsWithoutRef<C>, keyof BaseSwitchProps>;
+    Omit<WithRef<C>, keyof BaseSwitchProps>;
 

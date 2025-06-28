@@ -1,4 +1,8 @@
-import { ElementType, KeyboardEvent } from "react";
+import {
+    ChangeEvent,
+    ElementType,
+    KeyboardEvent
+} from "react";
 import clsx from "clsx";
 import styles from "./styles/checkbox.module.scss";
 import { CheckboxProps } from "./model/checkbox-props";
@@ -8,7 +12,7 @@ export const Checkbox = <C extends ElementType = "input">({
     checked = false,
     indeterminate = false,
     disabled = false,
-    onChange,
+    onClick,
     icon,
     checkedIcon,
     indeterminateIcon,
@@ -33,32 +37,36 @@ export const Checkbox = <C extends ElementType = "input">({
         className
     );
 
-    const handleKeyDown = (event: KeyboardEvent) => {
-        if ((event.key === " " || event.key === "Enter") && !disabled) {
-            event.preventDefault();
-            if (onChange) {
-                const syntheticEvent = {
-                    ...event,
-                    target: { checked: !checked },
-                    currentTarget: { checked: !checked },
-                };
-                onChange(syntheticEvent);
-            }
-        }
-    };
-
     return (
         <label className={classes}>
             <Component
                 ref={ref}
-                type={isInput ? "checkbox" : undefined}
-                checked={checked}
-                onChange={onChange}
-                disabled={disabled}
-                aria-checked={indeterminate ? "mixed" : checked}
                 {...(isInput
-                    ? {}
-                    : { role: "checkbox", tabIndex: disabled ? -1 : 0, onKeyDown: handleKeyDown })}
+                    ? {
+                        type: "checkbox",
+                        checked,
+                        disabled,
+                        onChange: (e: ChangeEvent<HTMLInputElement>) => {
+                            if (disabled) return;
+                            if (onClick) onClick(e);
+                        },
+                        readOnly: !onClick,
+                        "aria-checked": indeterminate ? "mixed" : checked,
+                    }
+                    : {
+                        role: "checkbox",
+                        tabIndex: disabled ? -1 : 0,
+                        "aria-checked": indeterminate ? "mixed" : checked,
+                        onClick: disabled ? undefined : onClick,
+                        onKeyDown: disabled
+                            ? undefined
+                            : (e: KeyboardEvent) => {
+                                if (e.key === " " || e.key === "Enter") {
+                                    e.preventDefault();
+                                    onClick?.(e);
+                                }
+                            },
+                    })}
                 {...rest}
             />
             <span className={styles.icon}>
@@ -71,4 +79,5 @@ export const Checkbox = <C extends ElementType = "input">({
             {label && <span className={styles.label}>{label}</span>}
         </label>
     );
+
 };

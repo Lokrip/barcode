@@ -1,12 +1,13 @@
 import {
     ComponentPropsWithRef,
     ElementType,
+    MouseEventHandler,
     ReactNode,
 } from "react";
-import { AvatarSize, AvatarVariant } from "./avatar-types";
-import { WithRef } from "../../../types/react";
+import {AvatarSize, AvatarVariant} from "./avatar-types";
+import {WithRef} from "../../../types/react";
 
-export type BaseAvatarProps<C extends ElementType = "button"> = {
+export interface BaseAvatarProps {
     src?: string;
     alt?: string;
     fallback?: ReactNode;
@@ -14,25 +15,24 @@ export type BaseAvatarProps<C extends ElementType = "button"> = {
     size?: AvatarSize;
     children?: ReactNode;
     className?: string;
-    as?: C
-};
+    as?: ElementType;
+    onClick?: MouseEventHandler;
+}
 
 export type AvatarProps<C extends ElementType = "button"> =
     BaseAvatarProps &
-    WithRef<HTMLElement> &
-    ComponentPropsWithRef<C> &
-    Omit<ComponentPropsWithRef<C>, keyof BaseAvatarProps<C>>;
+    Omit<ComponentPropsWithRef<C>, keyof BaseAvatarProps> &
+    WithRef<C>;
 
-export type BaseAvatarGroupProps<C extends ElementType = "button"> = {
-    children: ReactNode;
-    max?: number;
-    spacing?: number;
-    className?: string;
-    as?: C;
-};
 
-export type AvatarGroupProps<C extends ElementType = "button"> =
-    BaseAvatarGroupProps<C> &
-    WithRef<HTMLElement> &
-    ComponentPropsWithRef<C> &
-    Omit<ComponentPropsWithRef<C>, keyof BaseAvatarGroupProps<C>>;
+export interface BaseAvatarGroupProps {
+    children: ReactNode,
+    max?: number,
+    spacing?: number,
+    className?: string,
+    as?: ElementType,
+}
+
+export type AvatarGroupProps<C extends ElementType = "div"> =
+    BaseAvatarGroupProps &
+    Omit<ComponentPropsWithRef<C>, keyof BaseAvatarGroupProps>;

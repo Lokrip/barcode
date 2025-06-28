@@ -1,5 +1,4 @@
 import {
-    ComponentPropsWithRef,
     ElementType,
     ReactNode
 } from "react";
@@ -25,12 +24,9 @@ export interface BadgeOwnProps {
     };
     className?: string;
     children?: ReactNode;
-    component?: ElementType;
+    as?: ElementType;
 }
 
 export type BadgeProps<C extends ElementType = "span"> =
     BadgeOwnProps &
-    WithRef<C> &
-    ComponentPropsWithRef<C> &
-    Omit<ComponentPropsWithRef<C>, keyof BadgeOwnProps>;
-
+    Omit<WithRef<C>, keyof BadgeOwnProps>;
