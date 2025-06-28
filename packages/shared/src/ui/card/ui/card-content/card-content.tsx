@@ -21,7 +21,12 @@ export const CardContent = forwardRef<HTMLDivElement, CardContentProps>(
         const Slot = useSlot(children, { withStyles: true, styles });
 
         return (
-            <Component className={classes} ref={ref} {...other}>
+            <Component
+                data-testid="card-content"
+                className={classes}
+                ref={ref}
+                {...other}
+            >
                 <Slot name="title" />
                 <Slot name="description" />
             </Component>

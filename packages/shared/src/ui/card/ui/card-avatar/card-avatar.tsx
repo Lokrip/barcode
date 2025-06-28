@@ -5,6 +5,7 @@ export const CardAvatar: CardAvatarProps = ({ avatar, slot }) => {
     return (
         avatar && (
             <div
+                data-testid={slot}
                 {...(slot !== undefined ? { slot } : {})}
                 className={styles.avatar}
             >

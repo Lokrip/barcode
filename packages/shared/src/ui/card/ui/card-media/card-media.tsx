@@ -31,6 +31,7 @@ export const CardMediaRoot: FC<CardMediaRootGenericProps> = ({
 
     return (
         <CardImage
+            data-testid="card-image"
             ref={ref as Ref<HTMLImageElement>}
             src={img ?? ""}
             width={width}

@@ -1,0 +1,25 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`CardFooter > should match snapshot 1`] = `
+<DocumentFragment>
+  <div
+    class="_footer_4c9a6c flex-between test-class"
+    data-testid="card-footer-root"
+  >
+    <div
+      data-testid="avatar"
+    >
+      <span>
+        Avatar
+      </span>
+    </div>
+    <div
+      data-testid="actions"
+    >
+      <span>
+        Actions
+      </span>
+    </div>
+  </div>
+</DocumentFragment>
+`;

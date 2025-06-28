@@ -5,6 +5,7 @@ export const CardActions: CardActionsProps = ({ actions, slot }) => {
     return (
         actions && (
             <div
+                data-testid={slot}
                 {...(slot !== undefined ? { slot } : {})}
                 className={styles.actions}
             >

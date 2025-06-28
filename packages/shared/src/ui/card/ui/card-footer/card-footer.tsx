@@ -36,7 +36,11 @@ export const CardFooterRoot: FC<CardFooterRootGenericProps> = ({
     );
 
     return (
-        <div className={classNameValid} ref={ref}>
+        <div
+            data-testid="card-footer-root"
+            className={classNameValid}
+            ref={ref}
+        >
             <Slot name={slotAvatar} />
             <Slot name={slotActions} />
         </div>
