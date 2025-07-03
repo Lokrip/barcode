@@ -6,25 +6,19 @@ import { NavigationLinksType } from "@packages/shared/types/nav-links";
 
 export const NavigationLinks: FC<NavigationLinksProps> = ({ navLinks }) => {
     if (!navLinks) {
-        return (
-            <div className="tooltip">
-                Navigation list. Not found
-            </div>
-        )
+        return <div className="tooltip">Navigation list. Not found</div>;
     }
 
     return (
         <List<NavigationLinksType>
             direction="row"
             items={navLinks}
-            mapItems={item => {
+            mapItems={(item) => {
                 return (
                     <Item>
-                        <Link href={item.href}>
-                            {item.label}
-                        </Link>
+                        <Link href={item.href}>{item.label}</Link>
                     </Item>
-                )
+                );
             }}
         />
     );

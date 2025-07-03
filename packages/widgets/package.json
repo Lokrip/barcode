@@ -30,6 +30,7 @@
         "@packages/widgets": "workspace:1.0.0",
         "@packages/shared": "workspace:1.0.0",
         "@packages/sass": "workspace:1.0.0",
+        "@packages/features": "workspace:1.0.0",
         "clsx": "^2.1.1",
         "lucide-react": "^0.503.0",
         "react": "^19.0.0",

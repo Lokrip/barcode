@@ -24,3 +24,23 @@ export {
     getIconComponent,
     attachSubComponents,
 } from "./src/utils";
+
+export type {
+    BlockElements,
+    ClassNameType,
+    ComponentsHtml,
+    FormElements,
+    GenericProps,
+    HeadingElements,
+    InlineElements,
+    KeyedRecord,
+    KeyedRecordOptional,
+    ListElements,
+    MediaElements,
+    NavigationLinksType,
+    Size,
+    TableElements,
+    WithRef,
+    WithSlot,
+    WithSlotProp,
+} from "./src/types";

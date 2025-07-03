@@ -28,8 +28,7 @@
     "scripts": {
         "build": "tsc -b && vite build",
         "lint": "eslint .",
-        "preview": "vite preview",
-        "test": "vitest"
+        "preview": "vite preview"
     },
     "devDependencies": {
         "@eslint/js": "^9.22.0",
