@@ -1,5 +1,26 @@
 @use "@packages/sass/src/utilities/initial-variables" as iv;
+@use "@packages/sass/src/utilities/derived-variables" as dv;
+@use "@packages/sass/src/utilities/mixins" as m;
+@use "../../styles/search-initial-variables" as siv;
+
+@use "sass:map";
 
 .#{iv.$class-prefix}button__search {
-    background-color: red;
+    padding: 0px 10px 0px 12px;
+    width: siv.$search-width;
+    height: siv.$search-height;
+    max-width: 150px;
+    background-color: siv.$search-background-color;
+    border: map.get(siv.$search-border, "border");
+    border-radius: map.get(siv.$search-border, "radius");
+
+    @include m.gradient-shadow(
+        map.get(siv.$search-border, "radius"),
+        map.get(siv.$search-border, "radius")
+    );
+
+    &:hover {
+        border: map.get(siv.$search-border, "border-hover");
+        color: dv.$text-dark;
+    }
 }

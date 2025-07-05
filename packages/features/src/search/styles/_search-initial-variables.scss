@@ -1,0 +1,11 @@
+@use "@packages/sass/src/utilities/initial-variables" as iv;
+@use "@packages/sass/src/utilities/derived-variables" as dv;
+
+$search-background-color: dv.$background !default;
+$search-border: (
+    border: 1px dv.$border solid,
+    border-hover: 1px dv.$primary solid,
+    radius: iv.$radius-large,
+) !default;
+$search-width: 100% !default;
+$search-height: 44px !default;

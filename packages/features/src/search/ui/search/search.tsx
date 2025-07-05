@@ -11,7 +11,7 @@ export function Search({ icon }: SearchProps) {
                 aria-label="Search (Ctrl + K)"
                 className={styles.button__search}
             >
-                <span className={clsx(styles.button__container, "flex-center")}>
+                <span className={clsx(styles.button__container, "flex-start")}>
                     <LucideSearch
                         width={icon?.width ?? 20}
                         height={icon?.height ?? 20}

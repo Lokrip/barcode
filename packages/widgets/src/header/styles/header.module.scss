@@ -1,0 +1,7 @@
+@use "@packages/sass/src/utilities/initial-variables" as iv;
+@use "@packages/sass/src/flex/mixins" as mx;
+
+.#{iv.$class-prefix}navbar__layout {
+    @include mx.flex-between();
+    gap: 2rem;
+}

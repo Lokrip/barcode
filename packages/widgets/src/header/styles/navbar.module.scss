@@ -1,0 +1,5 @@
+@use "@packages/sass/src/utilities/initial-variables" as iv;
+
+.#{iv.$class-prefix}navbar__search {
+    flex: 1;
+}

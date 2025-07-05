@@ -6,7 +6,12 @@ import {
 } from "../types/_navbar-type";
 
 import styles from "../styles/navbar.module.scss";
-import { attachSubComponents, correctClass } from "@packages/shared";
+import {
+    attachSubComponents,
+    ClassNameType,
+    correctClass,
+} from "@packages/shared";
+import clsx from "clsx";
 
 const Logo: FC<NavbarLogoProps> = ({ children, className, CurrentLogo }) => {
     const classNameCorrect = correctClass(styles.search, className ?? "");
@@ -44,8 +49,20 @@ export const NavbarMain: FC<NavbarProps> = ({ children, className }) => {
     return <div className={classNameCorrect}>{children}</div>;
 };
 
+export const ActionsContainer: FC<PropsWithChildren<ClassNameType>> = ({
+    children,
+    className,
+}) => {
+    return (
+        <div className={clsx(styles.actions__container, className)}>
+            {children}
+        </div>
+    );
+};
+
 export const Navbar = attachSubComponents("Navbar", NavbarMain, {
     Logo: Logo,
     NavigationPannel: NavigationPannel,
     NavbarSearch: NavbarSearch,
+    Actions: ActionsContainer,
 });
