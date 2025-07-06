@@ -16,12 +16,15 @@
     },
     "dependencies": {
         "@packages/features": "workspace:1.0.0",
-        "@packages/shared": "workspace:1.0.0",
+        "@packages/redux": "workspace:1.0.0",
         "@packages/sass": "workspace:1.0.0",
+        "@packages/shared": "workspace:1.0.0",
+        "@reduxjs/toolkit": "^2.8.2",
         "clsx": "^2.1.1",
         "lucide-react": "^0.503.0",
         "react": "^19.0.0",
         "react-dom": "^19.0.0",
+        "react-redux": "^9.2.0",
         "sass": "^1.88.0"
     }
 }

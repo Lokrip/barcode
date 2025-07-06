@@ -4,6 +4,7 @@ import { SearchProps } from "../../model/types";
 import clsx from "clsx";
 
 export function Search({ icon }: SearchProps) {
+
     return (
         <div id="search">
             <button
